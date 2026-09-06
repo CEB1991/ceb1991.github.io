@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How this site was made | Carlos Beleche</title>
+<meta name="description" content="Disclosure of how this portfolio was built, including where AI assistance was used and what was reviewed by hand, plus an accessibility statement.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23005488'/%3E%3Cpath d='M6 22V10h4l6 8V10h4v12h-4l-6-8v8z' fill='%2300aeef'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <a class="wordmark" href="index.html">Carlos Eduardo Beleche<span>Educational technology and AI program leader</span></a>
+    <nav aria-label="Main">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="first-90-days.html">First 90 days</a></li>
+        <li><a href="responsible-ai.html">Responsible AI</a></li>
+        <li><a href="professional-learning.html">Professional learning</a></li>
+        <li><a href="familias.html">For families</a></li>
+        <li><a href="colophon.html" aria-current="page">How this was made</a></li>
+        <li><a href="es.html" lang="es">Español</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="page">
+
+  <div class="hero">
+    <p class="kicker">Disclosure</p>
+    <h1>How this site was made, including where I used AI.</h1>
+    <p class="lede col">If I am going to argue that AI use should be disclosed as a matter of ordinary practice, the argument has to start with my own work. This page is what that looks like.</p>
+  </div>
+
+  <h2>Where AI was used</h2>
+  <ul class="plain col">
+    <li>I used a generative AI assistant to help draft and structure the pages on this site, working from my own outline, my own positions, and my own resume.</li>
+    <li>I used it to help write the HTML, CSS, and the small amount of JavaScript behind the two interactive tools.</li>
+    <li>I did not use it to generate my professional history. Every claim about what I do at work comes from me.</li>
+  </ul>
+
+  <h2>What I did by hand</h2>
+  <ul class="plain col">
+    <li>I checked every factual claim and every external figure against the linked primary source, and I removed statements I could not source.</li>
+    <li>I wrote the Spanish myself rather than machine translating the English, which is why the Spanish text is not a sentence for sentence match. It is written for the person reading it in Spanish.</li>
+    <li>I reviewed the positions on the responsible AI page line by line, because they are mine and I will be asked to defend them.</li>
+    <li>I did the arithmetic in the footprint estimator myself and checked it by hand, and the formula is visible in the page source so anyone can check it too.</li>
+    <li>I checked the site against the accessibility items listed below.</li>
+  </ul>
+
+  <div class="callout col">
+    <h3>Why disclose at all</h3>
+    <p>Two reasons. First, the alternative is worse: undisclosed AI assistance in a portfolio about responsible AI adoption would be exactly the credibility failure I would spend the job warning districts about. Second, disclosure is more useful than a ban. What people need is a norm for saying what a tool did and what a human verified, and norms spread by example.</p>
+  </div>
+
+  <h2>Accessibility</h2>
+  <p class="col">Built to be usable rather than to claim a badge. Specifically:</p>
+  <ul class="plain col">
+    <li>Semantic HTML with one h1 per page and headings in order, so screen reader navigation works.</li>
+    <li>A skip link to main content, and visible focus outlines on every interactive element.</li>
+    <li>Text and background combinations checked for contrast, with no information carried by color alone.</li>
+    <li>Language attributes on the page and on Spanish passages, so screen readers switch pronunciation correctly.</li>
+    <li>Responsive layout that reflows to a single column on a phone with no horizontal scrolling.</li>
+    <li>No motion effects, and reduced motion preferences respected.</li>
+    <li>The language toggle on the family guide is progressive: with scripting disabled, both languages remain visible rather than the content disappearing.</li>
+    <li>The interactive tools are keyboard operable, announce their results to screen readers through a live region, and degrade to plain readable content when scripting is unavailable.</li>
+    <li>Charts and diagrams are inline SVG with a title and a description, so the content is available to a screen reader rather than locked inside an image.</li>
+    <li>The site follows your system light or dark setting, and every page has a print stylesheet so it can be used as a paper handout with the navigation stripped and link destinations spelled out.</li>
+  </ul>
+  <p class="col">If you find something here that does not work with your assistive technology, I would like to know. Email me at <a href="mailto:cebeleche@gmail.com">cebeleche@gmail.com</a>.</p>
+
+  <h2>Technical notes</h2>
+  <p class="col">Static HTML and CSS, no framework, no build step, no tracking, no analytics, no cookies, and no third party scripts. The two interactive tools run entirely in your browser. Nothing you type or select is stored, sent anywhere, or visible to me, which is the same standard I would want applied to a tool used with staff or students. Charts are hand written inline SVG rather than a charting library, so the page carries no dependencies at all. Typefaces are Public Sans, used across United States federal government design work, and Source Serif 4. Hosted on GitHub Pages. The complete source is public, so anything on this page can be checked rather than taken on faith.</p>
+
+  <p class="col meta">Last updated August 2026.</p>
+
+</main>
+
+<footer class="site">
+  <div class="inner">
+    <p><a href="index.html">Home</a> &middot; <a href="es.html" lang="es">Español</a></p>
+    <p class="disclaim">This is a personal portfolio. It is not affiliated with, endorsed by, or published on behalf of the San Diego County Office of Education or any other agency, and it contains no confidential or non public information.</p>
+  </div>
+</footer>
+
+</body>
+</html>
