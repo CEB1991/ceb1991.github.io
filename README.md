@@ -8,7 +8,7 @@ Live site: https://ceb1991.github.io
 
 | File | What it is |
 | --- | --- |
-| `index.html` | Home. Who I am and what I actually do, with links to the four pieces of work. |
+| `index.html` | Home. Who I am, what I actually do, my 2026 AI coursework, and links to the four pieces of work. |
 | `es.html` | Spanish home page, written in Spanish rather than translated. |
 | `first-90-days.html` | A proposed first 90 days for a countywide AI coordination role, including what I would deliberately not rush. |
 | `responsible-ai.html` | Five commitments for responsible adoption, an honest accounting of the environmental cost with sources, a chart putting data centre growth in proportion, an interactive footprint estimator, a student risk table, and where this sits in California policy. |
@@ -31,7 +31,7 @@ Nothing is stored or transmitted. All three run entirely in the browser.
 
 Charts and diagrams are hand written inline SVG with `title` and `desc` elements, so there is no charting library and no image that a screen reader cannot read.
 
-Typefaces are Public Sans and Source Serif 4. The site follows the system light or dark preference, and every page has a print stylesheet.
+Public Sans carries display and body text; Source Serif 4 is reserved for figures and numerals. The site follows the system light or dark preference, and every page has a print stylesheet.
 
 ## Running it locally
 
