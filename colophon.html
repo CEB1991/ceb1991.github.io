@@ -6,7 +6,7 @@
 <title>How this site was made | Carlos Beleche</title>
 <meta name="description" content="Disclosure of how this portfolio was built, including where AI assistance was used and what was reviewed by hand, plus an accessibility statement.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23005488'/%3E%3Cpath d='M6 22V10h4l6 8V10h4v12h-4l-6-8v8z' fill='%2300aeef'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="assets/style.css?v=3">
+<link rel="stylesheet" href="assets/style.css?v=4">
 </head>
 <body>
 <a class="skip" href="#main">Skip to main content</a>
@@ -52,7 +52,7 @@
   <h2>Where AI was used</h2>
   <ul class="plain col">
     <li>I used a generative AI assistant to help draft and structure the pages on this site, working from my own outline, my own positions, and my own resume.</li>
-    <li>I used it to help write the HTML, CSS, and the small amount of JavaScript behind the two interactive tools.</li>
+    <li>I used it to help write the HTML, CSS, and the small amount of JavaScript behind the two interactive tools, the language toggle, and the scroll fade.</li>
     <li>I did not use it to generate my professional history. Every claim about what I do at work comes from me.</li>
   </ul>
 
@@ -78,7 +78,7 @@
     <li>Text and background combinations checked for contrast, with no information carried by color alone.</li>
     <li>Language attributes on the page and on Spanish passages, so screen readers switch pronunciation correctly.</li>
     <li>Responsive layout that reflows to a single column on a phone with no horizontal scrolling.</li>
-    <li>No motion effects, and reduced motion preferences respected.</li>
+    <li>Motion is limited to a short fade as sections come into view, it is never required to read anything, and it is switched off entirely when your system asks for reduced motion.</li>
     <li>The language toggle on the family guide is progressive: with scripting disabled, both languages remain visible rather than the content disappearing.</li>
     <li>The interactive tools are keyboard operable, announce their results to screen readers through a live region, and degrade to plain readable content when scripting is unavailable.</li>
     <li>Charts and diagrams are inline SVG with a title and a description, so the content is available to a screen reader rather than locked inside an image.</li>
@@ -99,6 +99,8 @@
     <p class="disclaim">This is a personal portfolio. It is not affiliated with, endorsed by, or published on behalf of the San Diego County Office of Education or any other agency, and it contains no confidential or non public information.</p>
   </div>
 </footer>
+
+<script src="assets/enhance.js?v=1" defer></script>
 
 </body>
 </html>
