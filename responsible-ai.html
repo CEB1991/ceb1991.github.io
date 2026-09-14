@@ -129,13 +129,13 @@
 
   <div class="tool">
     <h3>Estimate the footprint of a rollout</h3>
-    <p class="toolnote">Move the sliders to size a hypothetical staff deployment. The arithmetic uses Google's published median figures for a text prompt: 0.24 watt hours, 0.26 millilitres of water, and an equivalence of roughly nine seconds of television per prompt. Assumes 250 working days a year.</p>
+    <p class="toolnote">The sliders open on a county office sized rollout. SDCOE publishes that more than 1,100 people work there,<sup><a href="#r8">8</a></sup> so that is the starting headcount, and ten prompts a person a working day is a deliberately ordinary assumption about staff who draft, summarize, and translate. The arithmetic uses Google's published median figures for one text prompt, 0.24 watt hours of electricity and 0.26 millilitres of water, together with Google's own comparison of roughly nine seconds of television.<sup><a href="#r3">3</a></sup> A working year is taken as 250 days. Change either slider and every number moves with it.</p>
 
     <div class="controls">
       <div class="control">
         <label for="staff">Staff using it</label>
-        <input type="range" id="staff" min="10" max="2000" step="10" value="500">
-        <p><span class="val" id="staffVal">500</span> <span class="hint">people</span></p>
+        <input type="range" id="staff" min="50" max="3000" step="10" value="1100">
+        <p><span class="val" id="staffVal">1,100</span> <span class="hint">people, opening at the size of SDCOE itself</span></p>
       </div>
       <div class="control">
         <label for="prompts">Prompts per person per working day</label>
@@ -145,15 +145,15 @@
     </div>
 
     <div class="readout" aria-live="polite">
-      <div><span class="n" id="outPrompts">1.3M</span><span class="k">prompts a year</span></div>
-      <div><span class="n" id="outKwh">300</span><span class="k">kilowatt hours a year</span></div>
-      <div><span class="n" id="outWater">325</span><span class="k">litres of water a year</span></div>
-      <div><span class="n" id="outTv">3,125</span><span class="k">hours of television, as an equivalence</span></div>
+      <div><span class="n" id="outPrompts">2.8M</span><span class="k">prompts a year</span></div>
+      <div><span class="n" id="outKwh">660</span><span class="k">kilowatt hours a year</span></div>
+      <div><span class="n" id="outWater">715</span><span class="k">litres of water a year</span></div>
+      <div><span class="n" id="outTv">6,875</span><span class="k">hours of television, as an equivalence</span></div>
     </div>
 
     <details class="caveat">
       <summary>What this number does not include, and why I still show it</summary>
-      <p>It excludes training the models, the electricity your own devices and network use, the embodied carbon of the hardware, and everything other than text. A reasoning request, a long document, or an image costs materially more than the median. The underlying figures are a vendor measuring its own product, they are a median that hides a long tail, and they cannot be independently audited.</p>
+      <p>It excludes training the models, the electricity your own devices and network use, the embodied carbon of the hardware, and everything other than text. A reasoning request, a long document, or an image costs materially more than the median. The underlying figures are a vendor measuring its own product, they are a median that hides a long tail, and they cannot be independently audited. The opening headcount is a published employee count, not a licence count. Nobody deploys a tool to every employee on day one, so treat 1,100 as the ceiling of a full rollout rather than a forecast of year one.</p>
       <p>So this is an order of magnitude, not an invoice. I show it anyway for one reason: a number on a slide starts a real conversation, and the conversation it starts is the right one. A few hundred kilowatt hours is not nothing and it is also not a catastrophe, which means the actual question is not the energy. It is whether the work being done with it was worth doing, and whether the same result could have come from a smaller model or no model at all.</p>
     </details>
   </div>
@@ -218,6 +218,7 @@
     <li id="r5">California Legislature, <a href="https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=202320240SB1288">SB 1288, public schools: artificial intelligence working group</a>, 2024.</li>
     <li id="r6">California Department of Education, <a href="https://www.cde.ca.gov/ci/pl/aipolicy.asp">Model policy: artificial intelligence in education</a>, June 2026.</li>
     <li id="r7">California Department of Education, <a href="https://www.cde.ca.gov/ci/pl/aiincalifornia.asp">Artificial intelligence in California education</a>, including the AB 2876 definition of AI literacy.</li>
+    <li id="r8">San Diego County Office of Education, <a href="https://www.sdcoe.net/work-sdcoe">Working at SDCOE</a>, which states that more than 1,100 people work at the county office. Used here only to size the estimator.</li>
   </ol>
   <p class="meta">Links verified at the time of writing. Figures in this section are current as of publication and should be rechecked before being quoted, because this literature moves quickly.</p>
 

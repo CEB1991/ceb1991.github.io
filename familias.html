@@ -3,16 +3,112 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AI at school: a guide for families | Guía para familias | Carlos Beleche</title>
-<meta name="description" content="Plain language answers for families about artificial intelligence in schools, in English and Spanish.">
+<title>AI at school: a guide for families | Gu&iacute;a para familias | Carlos Beleche</title>
+<meta name="description" content="Plain language answers for families about artificial intelligence in schools, written directly in English and Spanish, with the topics drawn from published national surveys of parents.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23005488'/%3E%3Cpath d='M6 22V10h4l6 8V10h4v12h-4l-6-8v8z' fill='%2300aeef'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="assets/style.css?v=3">
 <style>
   body.only-en .lang-es, body.only-es .lang-en { display: none; }
-  h1 .lang-en, h1 .lang-es { display: block; }
-  h1 .lang-es { font-size: .82em; color: var(--muted); margin-top: .3rem; }
-  .qa { border-top: 1px solid var(--rule); padding: 1.1rem 0; max-width: var(--measure); }
-  .qa:last-of-type { border-bottom: 1px solid var(--rule); }
+
+  /* ---------- full bleed hero band ---------- */
+  .fam-hero {
+    position: relative;
+    margin-inline: calc(50% - 50vw);
+    padding-inline: max(var(--gutter), calc(50vw - var(--shell) / 2));
+    padding-block: clamp(2.6rem, 6vw, 4.2rem);
+    background: linear-gradient(155deg, #04293f 0%, #053753 48%, #02141f 100%);
+    color: #cfe4f1;
+    overflow: hidden;
+    margin-bottom: 2.4rem;
+  }
+  .fam-hero::after {
+    content: ""; position: absolute; right: -8rem; bottom: -16rem;
+    width: 34rem; height: 34rem; border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,174,239,.22), transparent 65%);
+    pointer-events: none;
+  }
+  .fam-hero > * { position: relative; z-index: 1; }
+  .fam-kicker {
+    font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; font-weight: 600;
+    color: var(--cyan-pale); display: flex; align-items: center; gap: .7rem; margin: 0 0 1.15rem;
+  }
+  .fam-kicker::before { content: ""; width: 2.2rem; height: 2px; background: var(--cyan); flex: none; }
+  .fam-hero h1 {
+    color: #ffffff; font-size: var(--step-4); line-height: 1.04; letter-spacing: -.035em;
+    max-width: 19ch; margin: 0 0 1.15rem;
+  }
+  .fam-hero h1 .lang-en, .fam-hero h1 .lang-es { display: block; }
+  .fam-hero h1 .lang-es { font-size: .56em; color: var(--cyan-pale); letter-spacing: -.018em; margin-top: .55rem; }
+  .fam-hero .lede { color: #b9d2e2; max-width: 58ch; font-size: var(--step-1); margin: 0 0 1.5rem; }
+  .fam-chips { display: flex; flex-wrap: wrap; gap: .5rem; list-style: none; padding: 0; margin: 0 0 1.6rem; }
+  .fam-chips li {
+    font-size: .79rem; color: #cfe4f1; padding: .32rem .85rem; border-radius: 999px;
+    border: 1px solid rgba(127,214,247,.35); background: rgba(0,174,239,.09);
+  }
+  .fam-hero .langbar { margin: 0; }
+  .fam-hero .langbar button {
+    border-radius: 999px; border-color: rgba(127,214,247,.5); background: transparent; color: #cfe4f1;
+  }
+  .fam-hero .langbar button[aria-pressed="true"] {
+    background: var(--cyan); border-color: var(--cyan); color: #04293f; font-weight: 700;
+  }
+
+  /* ---------- what surveys actually show ---------- */
+  .evidence { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); margin: 0 0 .8rem; }
+  .evidence div {
+    background: var(--paper); border: 1px solid var(--rule); border-top: 3px solid var(--cyan);
+    border-radius: 12px; padding: 1.05rem 1.15rem;
+  }
+  .evidence .n {
+    display: block; font-family: var(--serif); font-size: 1.9rem; font-weight: 600;
+    color: var(--ink); line-height: 1.1; font-variant-numeric: tabular-nums;
+  }
+  .evidence p { font-size: .9rem; color: var(--muted); margin: .4rem 0 0; line-height: 1.45; }
+
+  /* ---------- question cards ---------- */
+  .qa-grid { display: grid; gap: 1.1rem; grid-template-columns: repeat(auto-fit, minmax(21rem, 1fr)); margin: 1.1rem 0 0; }
+  .qa {
+    background: var(--paper); border: 1px solid var(--rule); border-radius: 14px;
+    padding: 1.35rem 1.4rem; max-width: none;
+    transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  }
+  .qa:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(4,41,63,.09); border-color: var(--cyan); }
+  .qa .num {
+    display: inline-flex; align-items: center; justify-content: center; width: 1.75rem; height: 1.75rem;
+    border-radius: 50%; background: var(--wash); color: var(--navy);
+    font-size: .82rem; font-weight: 700; margin-bottom: .75rem; font-variant-numeric: tabular-nums;
+  }
+  .qa .q { color: var(--ink); font-weight: 700; font-size: 1.04rem; line-height: 1.28; margin: 0 0 .5rem; }
+  .qa p:last-child { margin-bottom: 0; }
+  body:not(.only-es) .qa .q.lang-es {
+    border-top: 1px solid var(--rule-soft); padding-top: .95rem; margin-top: 1.05rem; color: var(--navy);
+  }
+  .qa.featured {
+    grid-column: 1 / -1; border-color: var(--cyan);
+    background: linear-gradient(180deg, var(--wash), var(--paper) 70%);
+  }
+  .qa.featured .num { background: var(--cyan); color: #04293f; }
+  .ask { margin: .5rem 0 0; padding-left: 1.2rem; }
+  .ask li { margin-bottom: .4rem; color: var(--ink); }
+
+  /* ---------- sources ---------- */
+  .fam-sources { margin-top: 2.8rem; border-top: 2px solid var(--ink); padding-top: 1rem; }
+  .fam-sources h2 { font-size: .8rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin: 0 0 .8rem; }
+  .fam-sources ol { font-size: .87rem; color: var(--muted); padding-left: 1.2rem; margin: 0; max-width: 70ch; }
+  .fam-sources li { margin-bottom: .5rem; }
+
+  @media (max-width: 40rem) {
+    .qa-grid { grid-template-columns: 1fr; }
+    .fam-hero { margin-bottom: 1.8rem; }
+  }
+
+  @media print {
+    .fam-hero { background: #ffffff !important; color: #000; padding-block: 0; margin-inline: 0; padding-inline: 0; }
+    .fam-hero::after { display: none; }
+    .fam-hero h1, .fam-hero h1 .lang-es, .fam-hero .lede, .fam-chips li { color: #000 !important; }
+    .qa-grid, .evidence { display: block; }
+    .qa, .evidence div { break-inside: avoid; page-break-inside: avoid; border-radius: 0; margin-bottom: .8rem; box-shadow: none; }
+  }
 </style>
 </head>
 <body>
@@ -29,7 +125,7 @@
         <li><a href="professional-learning.html">Professional learning</a></li>
         <li><a href="familias.html" aria-current="page">For families</a></li>
         <li><a href="colophon.html">How this was made</a></li>
-        <li><a href="es.html" lang="es">Español</a></li>
+        <li><a href="es.html" lang="es">Espa&ntilde;ol</a></li>
       </ul>
     </nav>
   </div>
@@ -37,83 +133,134 @@
 
 <main id="main" class="page">
 
-  <div class="hero">
-    <div class="hero-split">
-      <div>
-      <p class="kicker">A sample family communication, written by me in both languages</p>
-      <h1><span class="lang-en">Artificial intelligence at your child's school</span><span class="lang-es" lang="es">La inteligencia artificial en la escuela de su hijo</span></h1>
-      <p class="lede col lang-en">These are the questions families actually ask, answered without jargon. Written directly in English and in Spanish, not machine translated, because a translated slide deck is not the same as a document written for the family reading it.</p>
-      <p class="lede col lang-es" lang="es">Estas son las preguntas que las familias hacen de verdad, contestadas sin lenguaje técnico. Escritas directamente en español y en inglés, no traducidas por máquina, porque una presentación traducida no es lo mismo que un documento escrito para la familia que lo va a leer.</p>
-      </div>
-      <div class="docmeta">
-        <h2>About this page</h2>
-        <dl>
-          <div><dt>Type</dt><dd>Family communication</dd></div>
-          <div><dt>Languages</dt><dd>English and Spanish</dd></div>
-          <div><dt>Written</dt><dd>Directly in both, not translated</dd></div>
-          <div><dt>Reading level</dt><dd>Plain language, no jargon</dd></div>
-        </dl>
-      </div>
+  <div class="fam-hero">
+    <p class="fam-kicker"><span class="lang-en">A sample family communication, written by me in both languages</span><span class="lang-es" lang="es">Comunicaci&oacute;n de muestra para familias, escrita por m&iacute; en los dos idiomas</span></p>
+    <h1><span class="lang-en">Artificial intelligence at your child&rsquo;s school</span><span class="lang-es" lang="es">La inteligencia artificial en la escuela de su hijo</span></h1>
+    <p class="lede lang-en">Seven questions, answered in plain language. I did not survey San Diego families to write this, so the topics come from somewhere you can check: published national surveys of parents, which land on privacy, accuracy, and whether a person is accountable. Written directly in English and in Spanish, because a translated slide deck is not the same as a document written for the family reading it.</p>
+    <p class="lede lang-es" lang="es">Siete preguntas, contestadas en lenguaje sencillo. No hice una encuesta a las familias de San Diego para escribir esto, as&iacute; que los temas vienen de algo que usted puede verificar: encuestas nacionales publicadas sobre lo que dicen los padres de familia, y lo que dicen se concentra en la privacidad, en los errores y en qui&eacute;n responde por las decisiones. Escritas directamente en espa&ntilde;ol y en ingl&eacute;s, porque una presentaci&oacute;n traducida no es lo mismo que un documento escrito para la familia que lo va a leer.</p>
+    <ul class="fam-chips">
+      <li><span class="lang-en">Family communication</span><span class="lang-es" lang="es">Comunicaci&oacute;n para familias</span></li>
+      <li><span class="lang-en">English and Spanish, written in both</span><span class="lang-es" lang="es">Ingl&eacute;s y espa&ntilde;ol, escrito en los dos</span></li>
+      <li><span class="lang-en">Plain language, no jargon</span><span class="lang-es" lang="es">Lenguaje sencillo, sin tecnicismos</span></li>
+      <li><span class="lang-en">Topics sourced, not assumed</span><span class="lang-es" lang="es">Temas con fuente, no supuestos</span></li>
+    </ul>
+    <div class="langbar">
+      <button type="button" id="btn-both" aria-pressed="true">Both / Ambos</button>
+      <button type="button" id="btn-en" aria-pressed="false">English</button>
+      <button type="button" id="btn-es" aria-pressed="false" lang="es">Espa&ntilde;ol</button>
     </div>
   </div>
 
-  <div class="langbar">
-    <button type="button" id="btn-both" aria-pressed="true">Both / Ambos</button>
-    <button type="button" id="btn-en" aria-pressed="false">English</button>
-    <button type="button" id="btn-es" aria-pressed="false" lang="es">Español</button>
+  <h2 class="lang-en">Where these questions come from</h2>
+  <h2 class="lang-es" lang="es">De d&oacute;nde salen estas preguntas</h2>
+  <p class="col lang-en">Three findings from national surveys of parents and young people, published between February and June 2026. They are the reason this page leads with privacy, with being wrong, and with who is accountable.</p>
+  <p class="col lang-es" lang="es">Tres resultados de encuestas nacionales a padres de familia y a j&oacute;venes, publicadas entre febrero y junio de 2026. Por eso esta p&aacute;gina empieza con la privacidad, con los errores y con qui&eacute;n responde.</p>
+
+  <div class="evidence">
+    <div>
+      <span class="n">64% / 51%</span>
+      <p class="lang-en">Share of teens who say they use AI chatbots, against the share of parents who believe their own teen does. Pew Research Center.<sup><a href="#fr1">1</a></sup></p>
+      <p class="lang-es" lang="es">Porcentaje de adolescentes que dicen usar estos programas, frente al porcentaje de padres que creen que su hijo los usa. Pew Research Center.<sup><a href="#fr1">1</a></sup></p>
+    </div>
+    <div>
+      <span class="n">8 in 10</span>
+      <p class="lang-en">Parents of public school students who want stronger guardrails on AI for children, in a February 2026 survey of 1,511 parents.<sup><a href="#fr2">2</a></sup></p>
+      <p class="lang-es" lang="es">De cada diez padres de escuelas p&uacute;blicas, ocho quieren m&aacute;s protecciones para los ni&ntilde;os, en una encuesta de febrero de 2026 a 1,511 padres.<sup><a href="#fr2">2</a></sup></p>
+    </div>
+    <div>
+      <span class="n">Shared worry</span>
+      <p class="lang-en">Parents and children alike report concern about AI collecting personal information without their knowledge. Common Sense Media.<sup><a href="#fr3">3</a></sup></p>
+      <p class="lang-es" lang="es">Padres e hijos por igual dicen preocuparse porque estos programas recojan informaci&oacute;n personal sin que ellos lo sepan. Common Sense Media.<sup><a href="#fr3">3</a></sup></p>
+    </div>
   </div>
 
-  <div class="qa">
-    <p class="q lang-en">What is artificial intelligence, in plain terms?</p>
-    <p class="lang-en">Most of the tools people mean when they say AI are programs that have read enormous amounts of text and learned to predict what words usually come next. That is why they sound so natural and also why they are sometimes confidently wrong. The program does not know things the way a person does, and it does not know when it has made a mistake.</p>
-    <p class="q lang-es" lang="es">¿Qué es la inteligencia artificial, en palabras sencillas?</p>
-    <p class="lang-es" lang="es">La mayoría de estas herramientas son programas que han leído cantidades enormes de texto y aprendieron a predecir qué palabras suelen seguir. Por eso suenan tan naturales, y por eso también se equivocan con mucha seguridad. El programa no sabe las cosas como las sabe una persona, y no se da cuenta cuando comete un error.</p>
+  <h2 class="lang-en">The questions, answered</h2>
+  <h2 class="lang-es" lang="es">Las preguntas, contestadas</h2>
+
+  <div class="qa-grid">
+
+    <article class="qa">
+      <span class="num" aria-hidden="true">1</span>
+      <p class="q lang-en">What is artificial intelligence, in plain terms?</p>
+      <p class="lang-en">Most of the tools people mean when they say AI are programs that have read enormous amounts of text and learned to predict what words usually come next. That is why they sound so natural and also why they are sometimes confidently wrong. The program does not know things the way a person does, and it does not know when it has made a mistake.</p>
+      <p class="q lang-es" lang="es">&iquest;Qu&eacute; es la inteligencia artificial, en palabras sencillas?</p>
+      <p class="lang-es" lang="es">La mayor&iacute;a de estas herramientas son programas que han le&iacute;do cantidades enormes de texto y aprendieron a predecir qu&eacute; palabras suelen seguir. Por eso suenan tan naturales, y por eso tambi&eacute;n se equivocan con mucha seguridad. El programa no sabe las cosas como las sabe una persona, y no se da cuenta cuando comete un error.</p>
+    </article>
+
+    <article class="qa">
+      <span class="num" aria-hidden="true">2</span>
+      <p class="q lang-en">Is my child&rsquo;s information safe?</p>
+      <p class="lang-en">It depends entirely on which tool is being used. When a district signs a contract for a tool, California law requires terms about what the company may do with student information, how long it keeps it, and what happens when the district ends the contract. Free tools that a person downloads on their own usually have none of those protections. That is the difference to ask about.</p>
+      <p class="q lang-es" lang="es">&iquest;Est&aacute; segura la informaci&oacute;n de mi hijo?</p>
+      <p class="lang-es" lang="es">Depende por completo de cu&aacute;l herramienta se use. Cuando un distrito firma un contrato, la ley de California exige condiciones sobre qu&eacute; puede hacer la empresa con la informaci&oacute;n del estudiante, cu&aacute;nto tiempo la guarda y qu&eacute; pasa cuando termina el contrato. Las herramientas gratuitas que alguien descarga por su cuenta normalmente no tienen ninguna de esas protecciones. Esa es la diferencia que conviene preguntar.</p>
+    </article>
+
+    <article class="qa">
+      <span class="num" aria-hidden="true">3</span>
+      <p class="q lang-en">Will a computer decide my child&rsquo;s grade, placement, or discipline?</p>
+      <p class="lang-en">It should not, and you have every right to ask directly. My position is that no decision affecting a student&rsquo;s grade, placement, services, or discipline should rest on an AI output, and that a specific named person should be answerable for any decision that touches your child. If you are ever told that &ldquo;the system&rdquo; decided something, the correct follow up question is who is the person.</p>
+      <p class="q lang-es" lang="es">&iquest;Una computadora va a decidir la calificaci&oacute;n, la colocaci&oacute;n o la disciplina de mi hijo?</p>
+      <p class="lang-es" lang="es">No deber&iacute;a, y usted tiene todo el derecho de preguntarlo directamente. Mi postura es que ninguna decisi&oacute;n sobre la calificaci&oacute;n, la colocaci&oacute;n, los servicios o la disciplina de un estudiante debe basarse en lo que produce una inteligencia artificial, y que siempre debe haber una persona con nombre responsable de cualquier decisi&oacute;n que afecte a su hijo. Si alguna vez le dicen que &ldquo;el sistema&rdquo; decidi&oacute; algo, la pregunta correcta es qui&eacute;n es la persona.</p>
+    </article>
+
+    <article class="qa">
+      <span class="num" aria-hidden="true">4</span>
+      <p class="q lang-en">What happens when it is wrong?</p>
+      <p class="lang-en">These tools invent facts, sources, and quotes that look completely real. They also tend to be less accurate about smaller communities, less common names, and languages other than English, which means the errors are not spread evenly. Anything important should be checked by a person before it reaches you, and if something you received seems wrong, say so. That report is useful.</p>
+      <p class="q lang-es" lang="es">&iquest;Qu&eacute; pasa cuando se equivoca?</p>
+      <p class="lang-es" lang="es">Estas herramientas inventan datos, fuentes y citas que parecen completamente reales. Adem&aacute;s suelen fallar m&aacute;s con comunidades peque&ntilde;as, con nombres menos comunes y con idiomas que no son el ingl&eacute;s, as&iacute; que los errores no se reparten por igual. Todo lo importante debe ser revisado por una persona antes de llegar a usted, y si algo que recibi&oacute; le parece equivocado, d&iacute;galo. Ese aviso sirve.</p>
+    </article>
+
+    <article class="qa">
+      <span class="num" aria-hidden="true">5</span>
+      <p class="q lang-en">Can I say no?</p>
+      <p class="lang-en">You can always ask what the alternative is, and there should be one. No family should have to go through an automated system to reach a real person, and no student should be required to use an AI tool to complete required work without another path being available. Ask the school what the alternative is and how to request it.</p>
+      <p class="q lang-es" lang="es">&iquest;Puedo decir que no?</p>
+      <p class="lang-es" lang="es">Usted siempre puede preguntar cu&aacute;l es la alternativa, y debe existir una. Ninguna familia deber&iacute;a tener que pasar por un sistema autom&aacute;tico para llegar a una persona real, y ning&uacute;n estudiante deber&iacute;a estar obligado a usar una herramienta de inteligencia artificial para cumplir con un trabajo si no hay otro camino disponible. Pregunte en la escuela cu&aacute;l es la alternativa y c&oacute;mo solicitarla.</p>
+    </article>
+
+    <article class="qa">
+      <span class="num" aria-hidden="true">6</span>
+      <p class="q lang-en">What can we do at home?</p>
+      <p class="lang-en">Two things help more than any rule. Ask your child to show you what they use and to explain how it works, which teaches them to notice that it is a tool rather than an authority. And when it gives an answer, ask together how you would check whether it is true. That habit protects them far longer than any single policy will.</p>
+      <p class="q lang-es" lang="es">&iquest;Qu&eacute; podemos hacer en casa?</p>
+      <p class="lang-es" lang="es">Dos cosas ayudan m&aacute;s que cualquier regla. P&iacute;dale a su hijo que le muestre lo que usa y que le explique c&oacute;mo funciona, porque eso le ense&ntilde;a a verlo como una herramienta y no como una autoridad. Y cuando le d&eacute; una respuesta, preg&uacute;ntense juntos c&oacute;mo comprobar&iacute;an si es cierta. Ese h&aacute;bito lo va a proteger mucho m&aacute;s tiempo que cualquier pol&iacute;tica.</p>
+    </article>
+
+    <article class="qa featured">
+      <span class="num" aria-hidden="true">7</span>
+      <p class="q lang-en">What should I ask the school?</p>
+      <p class="lang-en">Four questions cover most of it. A school that cannot answer them yet is not necessarily doing anything wrong, but the questions are fair and they deserve an answer in writing.</p>
+      <ol class="ask lang-en">
+        <li>Which tools do my child&rsquo;s teachers use with students?</li>
+        <li>What information about my child goes into them?</li>
+        <li>Who reviews what comes out before it affects my child?</li>
+        <li>Who do I contact if I have a concern?</li>
+      </ol>
+      <p class="q lang-es" lang="es">&iquest;Qu&eacute; debo preguntar en la escuela?</p>
+      <p class="lang-es" lang="es">Cuatro preguntas cubren casi todo. Una escuela que todav&iacute;a no puede contestarlas no necesariamente est&aacute; haciendo algo mal, pero las preguntas son justas y merecen una respuesta por escrito.</p>
+      <ol class="ask lang-es" lang="es">
+        <li>&iquest;Qu&eacute; herramientas usan los maestros de mi hijo con los estudiantes?</li>
+        <li>&iquest;Qu&eacute; informaci&oacute;n sobre mi hijo entra en esas herramientas?</li>
+        <li>&iquest;Qui&eacute;n revisa los resultados antes de que afecten a mi hijo?</li>
+        <li>&iquest;A qui&eacute;n contacto si tengo una preocupaci&oacute;n?</li>
+      </ol>
+    </article>
+
   </div>
 
-  <div class="qa">
-    <p class="q lang-en">Is my child's information safe?</p>
-    <p class="lang-en">It depends entirely on which tool is being used. When a district signs a contract for a tool, California law requires terms about what the company may do with student information, how long it keeps it, and what happens when the district ends the contract. Free tools that a person downloads on their own usually have none of those protections. That is the difference to ask about.</p>
-    <p class="q lang-es" lang="es">¿Está segura la información de mi hijo?</p>
-    <p class="lang-es" lang="es">Depende por completo de cuál herramienta se use. Cuando un distrito firma un contrato, la ley de California exige condiciones sobre qué puede hacer la empresa con la información del estudiante, cuánto tiempo la guarda y qué pasa cuando termina el contrato. Las herramientas gratuitas que alguien descarga por su cuenta normalmente no tienen ninguna de esas protecciones. Esa es la diferencia que conviene preguntar.</p>
-  </div>
-
-  <div class="qa">
-    <p class="q lang-en">Will a computer decide my child's grade, placement, or discipline?</p>
-    <p class="lang-en">It should not, and you have every right to ask directly. My position is that no decision affecting a student's grade, placement, services, or discipline should rest on an AI output, and that a specific named person should be answerable for any decision that touches your child. If you are ever told that "the system" decided something, the correct follow up question is who is the person.</p>
-    <p class="q lang-es" lang="es">¿Una computadora va a decidir la calificación, la colocación o la disciplina de mi hijo?</p>
-    <p class="lang-es" lang="es">No debería, y usted tiene todo el derecho de preguntarlo directamente. Mi postura es que ninguna decisión sobre la calificación, la colocación, los servicios o la disciplina de un estudiante debe basarse en lo que produce una inteligencia artificial, y que siempre debe haber una persona con nombre responsable de cualquier decisión que afecte a su hijo. Si alguna vez le dicen que "el sistema" decidió algo, la pregunta correcta es quién es la persona.</p>
-  </div>
-
-  <div class="qa">
-    <p class="q lang-en">What happens when it is wrong?</p>
-    <p class="lang-en">These tools invent facts, sources, and quotes that look completely real. They also tend to be less accurate about smaller communities, less common names, and languages other than English, which means the errors are not spread evenly. Anything important should be checked by a person before it reaches you, and if something you received seems wrong, say so. That report is useful.</p>
-    <p class="q lang-es" lang="es">¿Qué pasa cuando se equivoca?</p>
-    <p class="lang-es" lang="es">Estas herramientas inventan datos, fuentes y citas que parecen completamente reales. Además suelen fallar más con comunidades pequeñas, con nombres menos comunes y con idiomas que no son el inglés, así que los errores no se reparten por igual. Todo lo importante debe ser revisado por una persona antes de llegar a usted, y si algo que recibió le parece equivocado, dígalo. Ese aviso sirve.</p>
-  </div>
-
-  <div class="qa">
-    <p class="q lang-en">Can I say no?</p>
-    <p class="lang-en">You can always ask what the alternative is, and there should be one. No family should have to go through an automated system to reach a real person, and no student should be required to use an AI tool to complete required work without another path being available. Ask the school what the alternative is and how to request it.</p>
-    <p class="q lang-es" lang="es">¿Puedo decir que no?</p>
-    <p class="lang-es" lang="es">Usted siempre puede preguntar cuál es la alternativa, y debe existir una. Ninguna familia debería tener que pasar por un sistema automático para llegar a una persona real, y ningún estudiante debería estar obligado a usar una herramienta de inteligencia artificial para cumplir con un trabajo si no hay otro camino disponible. Pregunte en la escuela cuál es la alternativa y cómo solicitarla.</p>
-  </div>
-
-  <div class="qa">
-    <p class="q lang-en">What should I ask the school?</p>
-    <p class="lang-en">Four questions cover most of it. Which tools do my child's teachers use with students? What information about my child goes into them? Who reviews what comes out before it affects my child? Who do I contact if I have a concern? A school that cannot answer these yet is not necessarily doing anything wrong, but the questions are fair and they deserve an answer in writing.</p>
-    <p class="q lang-es" lang="es">¿Qué debo preguntar en la escuela?</p>
-    <p class="lang-es" lang="es">Cuatro preguntas cubren casi todo. ¿Qué herramientas usan los maestros de mi hijo con los estudiantes? ¿Qué información sobre mi hijo entra en esas herramientas? ¿Quién revisa los resultados antes de que afecten a mi hijo? ¿A quién contacto si tengo una preocupación? Una escuela que todavía no puede contestar no necesariamente está haciendo algo mal, pero las preguntas son justas y merecen una respuesta por escrito.</p>
-  </div>
-
-  <div class="qa">
-    <p class="q lang-en">What can we do at home?</p>
-    <p class="lang-en">Two things help more than any rule. Ask your child to show you what they use and to explain how it works, which teaches them to notice that it is a tool rather than an authority. And when it gives an answer, ask together how you would check whether it is true. That habit protects them far longer than any single policy will.</p>
-    <p class="q lang-es" lang="es">¿Qué podemos hacer en casa?</p>
-    <p class="lang-es" lang="es">Dos cosas ayudan más que cualquier regla. Pídale a su hijo que le muestre lo que usa y que le explique cómo funciona, porque eso le enseña a verlo como una herramienta y no como una autoridad. Y cuando le dé una respuesta, pregúntense juntos cómo comprobarían si es cierta. Ese hábito lo va a proteger mucho más tiempo que cualquier política.</p>
+  <div class="fam-sources">
+    <h2 class="lang-en">Sources for the survey figures</h2>
+    <h2 class="lang-es" lang="es">Fuentes de las cifras de las encuestas</h2>
+    <ol>
+      <li id="fr1">Pew Research Center, <a href="https://www.pewresearch.org/internet/2026/02/24/what-parents-say-about-their-teens-ai-use/">What parents say about their teen&rsquo;s AI use</a>. Teens and their parents surveyed September and October 2025, published February 2026.</li>
+      <li id="fr2">Education Week, <a href="https://www.edweek.org/technology/how-do-parents-want-schools-to-handle-ai-insights-from-a-new-survey/2026/03">How do parents want schools to handle AI</a>, reporting an Echelon Insights survey of 1,511 public school parents conducted for the National Parents Union, February 2026.</li>
+      <li id="fr3">Common Sense Media with Echelon Insights and Lake Research Partners, <a href="https://www.commonsensemedia.org/press-releases/common-sense-media-releases-new-research-on-ai-attitudes-among-families">Generation AI: what kids and families think about AI</a>, March 2026.</li>
+    </ol>
   </div>
 
   <p class="col meta lang-en">This is a sample document written for this portfolio. It is not official guidance from any school, district, or county office, and families should always ask their own school about local practice.</p>
-  <p class="col meta lang-es" lang="es">Este es un documento de muestra escrito para este portafolio. No es una guía oficial de ninguna escuela, distrito ni oficina de educación del condado, y las familias siempre deben preguntar en su propia escuela sobre las prácticas locales.</p>
+  <p class="col meta lang-es" lang="es">Este es un documento de muestra escrito para este portafolio. No es una gu&iacute;a oficial de ninguna escuela, distrito ni oficina de educaci&oacute;n del condado, y las familias siempre deben preguntar en su propia escuela sobre las pr&aacute;cticas locales.</p>
 
 </main>
 
