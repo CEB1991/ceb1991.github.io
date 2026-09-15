@@ -42,8 +42,10 @@
   --step-4: clamp(2.25rem, 4.1vw + 1rem, 3.75rem);
 }
 
+/* Dark tokens apply when the system asks for dark and the reader has not chosen
+   otherwise, or when the reader picks dark with the header toggle. */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --ink: #eef5fa;
     --navy: #6cc6f2;
     --navy-deep: #a5dcf7;
@@ -64,6 +66,28 @@
     --solid: #0e5a86;
     --solid-hover: #17739f;
   }
+}
+
+:root[data-theme="dark"] {
+  --ink: #eef5fa;
+  --navy: #6cc6f2;
+  --navy-deep: #a5dcf7;
+  --navy-dark: #061722;
+  --cyan: #00aeef;
+  --cyan-pale: #7fd6f7;
+  --paper: #0b151d;
+  --wash: #11212c;
+  --rule: #26404f;
+  --rule-soft: #1a2d39;
+  --text: #cbd9e2;
+  --muted: #8ba3b1;
+  --mark: #e0a95c;
+  --mark-wash: #201810;
+  --mark-rule: #453519;
+  --link-hover: #7fd6f7;
+  --control: #5f7f92;
+  --solid: #0e5a86;
+  --solid-hover: #17739f;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -104,10 +128,44 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 }
 .wordmark span { display: block; font-size: .77rem; font-weight: 400; letter-spacing: 0; color: var(--muted); margin-top: .1rem; }
 .masthead nav { margin-left: auto; }
+.masthead-inner { align-items: center; }
 .masthead nav ul { list-style: none; display: flex; flex-wrap: wrap; gap: .35rem 1.15rem; margin: 0; padding: 0; font-size: .94rem; }
 .masthead nav a { text-decoration: none; color: var(--text); display: inline-block; padding: .35rem 0 .3rem; min-height: 1.6rem; border-bottom: 2px solid transparent; }
 .masthead nav a:hover { border-bottom-color: var(--cyan); color: var(--ink); }
 .masthead nav a[aria-current="page"] { border-bottom-color: var(--navy); font-weight: 700; color: var(--navy); }
+
+.theme-toggle {
+  display: inline-flex; align-items: center; gap: .45rem; margin-left: auto; font: inherit; font-size: .82rem;
+  padding: .42rem .85rem .42rem .7rem; min-height: 2.25rem; cursor: pointer;
+  background: transparent; color: var(--text); border: 1px solid var(--control);
+  border-radius: 999px; line-height: 1; white-space: nowrap;
+  transition: border-color .18s ease, color .18s ease, background .18s ease;
+}
+.theme-toggle:hover { border-color: var(--navy); color: var(--navy); background: var(--wash); }
+.theme-toggle svg { width: 1rem; height: 1rem; flex: none; }
+.theme-toggle .icon-sun { display: none; }
+:root[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+:root[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-toggle .icon-sun { display: block; }
+  :root:not([data-theme="light"]) .theme-toggle .icon-moon { display: none; }
+}
+.theme-toggle .label-dark { display: inline; }
+.theme-toggle .label-light { display: none; }
+:root[data-theme="dark"] .theme-toggle .label-dark { display: none; }
+:root[data-theme="dark"] .theme-toggle .label-light { display: inline; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-toggle .label-dark { display: none; }
+  :root:not([data-theme="light"]) .theme-toggle .label-light { display: inline; }
+}
+
+/* reading progress, decorative only */
+.progress {
+  position: fixed; left: 0; top: 0; height: 3px; width: 100%; z-index: 40;
+  transform: scaleX(0); transform-origin: left;
+  background: linear-gradient(90deg, var(--cyan), var(--navy-deep));
+  pointer-events: none;
+}
 
 /* ---------- layout ---------- */
 .page { max-width: var(--shell); margin: 0 auto; padding: 0 var(--gutter) 5rem; }
@@ -128,7 +186,7 @@ strong { color: var(--ink); font-weight: 700; }
 .lead {
   background-color: var(--navy-dark);
   background-image:
-    radial-gradient(120% 130% at 88% 6%, rgba(0, 174, 239, .20) 0%, rgba(0, 174, 239, 0) 58%),
+    radial-gradient(120% 130% at 88% 6%, rgba(0, 174, 239, .14) 0%, rgba(0, 174, 239, 0) 58%),
     linear-gradient(178deg, #06304a 0%, #04293f 62%, #041f30 100%);
   color: #dceaf3;
   border-bottom: 1px solid var(--rule);
@@ -150,7 +208,7 @@ strong { color: var(--ink); font-weight: 700; }
 
 .lead-figure { margin: 0; }
 .lead-figure svg { width: 100%; height: auto; display: block; }
-.lead-figure figcaption { font-size: .82rem; color: #8fb0c4; margin-top: .9rem; max-width: 36ch; line-height: 1.45; }
+.lead-figure figcaption { font-size: .82rem; color: #aac7d8; margin-top: .9rem; max-width: 36ch; line-height: 1.45; }
 
 /* the single animated moment on the site: the county layer arrives lit */
 @media (prefers-reduced-motion: no-preference) {
@@ -175,8 +233,8 @@ strong { color: var(--ink); font-weight: 700; }
   font-family: var(--serif); font-size: clamp(1.9rem, 3.2vw, 2.6rem); font-weight: 600;
   color: #ffffff; line-height: 1; font-variant-numeric: tabular-nums; letter-spacing: -.02em;
 }
-.figures dd { margin: .45rem 0 0; font-size: .85rem; color: #9dbccf; line-height: 1.4; max-width: 22ch; }
-.figures .src { font-size: .78rem; color: #7ba0b7; margin: 0; padding: .2rem 0 1.7rem; max-width: 80ch; line-height: 1.5; }
+.figures dd { margin: .45rem 0 0; font-size: .85rem; color: #b3cfdf; line-height: 1.4; max-width: 22ch; }
+.figures .src { font-size: .78rem; color: #aac7d8; margin: 0; padding: .2rem 0 1.7rem; max-width: 80ch; line-height: 1.5; }
 
 /* ---------- interior page hero ---------- */
 .hero { padding: 3.2rem 0 1.9rem; border-bottom: 1px solid var(--rule); margin-bottom: 2.6rem; }
@@ -387,7 +445,7 @@ footer.site .disclaim { max-width: 62ch; margin-top: .85rem; }
   margin-bottom: 2.8rem;
   border-bottom: 0;
   background:
-    radial-gradient(120% 90% at 88% 6%, rgba(0,174,239,.26), transparent 58%),
+    radial-gradient(120% 90% at 88% 6%, rgba(0,174,239,.16), transparent 58%),
     linear-gradient(158deg, #04293f 0%, #06405f 44%, #02141f 100%);
   color: #cfe4f1;
   overflow: hidden;
@@ -403,7 +461,7 @@ footer.site .disclaim { max-width: 62ch; margin-top: .85rem; }
 .hero::after {
   content: ""; position: absolute; z-index: -1; right: -12rem; bottom: -22rem;
   width: 44rem; height: 44rem; border-radius: 50%;
-  background: radial-gradient(circle, rgba(0,174,239,.28), transparent 62%);
+  background: radial-gradient(circle, rgba(0,174,239,.20), transparent 62%);
 }
 .hero > * { position: relative; }
 .hero .kicker { color: var(--cyan-pale); }
@@ -419,7 +477,7 @@ footer.site .disclaim { max-width: 62ch; margin-top: .85rem; }
 }
 .hero .docmeta h2 { color: var(--cyan-pale); }
 .hero .docmeta div { border-bottom-color: rgba(127,214,247,.16); }
-.hero .docmeta dt { color: #7fb9d8; }
+.hero .docmeta dt { color: #a3cbe4; }
 .hero .docmeta dd { color: #e2eff7; }
 
 /* depth on the repeating surfaces */
@@ -455,3 +513,34 @@ footer.site .disclaim { max-width: 62ch; margin-top: .85rem; }
   .piece:hover, .tool:hover { transform: none; box-shadow: none; }
   .piece, .tool, .callout, .note, .hero .docmeta { border-radius: 0; }
 }
+
+
+/* ==========================================================================
+   v5 polish
+   Depth on the home banner, a quiet accent on section headings, and a
+   count-up for the county figures. Nothing here carries meaning on its own.
+   ========================================================================== */
+
+.lead { position: relative; isolation: isolate; }
+.lead::after {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background-image: radial-gradient(rgba(127,214,247,.14) 1px, transparent 1px);
+  background-size: 26px 26px;
+  -webkit-mask-image: linear-gradient(112deg, #000 0%, transparent 58%);
+  mask-image: linear-gradient(112deg, #000 0%, transparent 58%);
+}
+
+/* section headings get a short rule above them, so a long page has rhythm */
+.page > h2 { position: relative; padding-top: 1.15rem; }
+.page > h2::before {
+  content: ""; position: absolute; top: 0; left: 0; width: 2.4rem; height: 3px;
+  background: var(--cyan); border-radius: 2px;
+}
+
+.figures dt { font-variant-numeric: tabular-nums; }
+
+.piece:hover, .tool:hover { box-shadow: 0 14px 38px rgba(4,41,63,.10), 0 0 0 1px var(--cyan); }
+:root[data-theme="dark"] .piece:hover, :root[data-theme="dark"] .tool:hover { box-shadow: 0 14px 38px rgba(0,0,0,.45), 0 0 0 1px var(--cyan); }
+
+@media (prefers-reduced-motion: reduce) { .progress { display: none; } }
+@media print { .progress, .theme-toggle { display: none; } .page > h2::before { display: none; } }

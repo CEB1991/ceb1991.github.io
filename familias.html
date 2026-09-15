@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta name="color-scheme" content="light dark">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AI at school: a guide for families | Gu&iacute;a para familias | Carlos Beleche</title>
 <meta name="description" content="Plain language answers for families about artificial intelligence in schools, written directly in English and Spanish, with the topics drawn from published national surveys of parents.">
@@ -49,7 +50,7 @@
     position: relative;
     padding-block: clamp(3rem, 7vw, 5.5rem);
     background:
-      radial-gradient(120% 90% at 88% 8%, rgba(0,174,239,.28), transparent 58%),
+      radial-gradient(120% 90% at 88% 8%, rgba(0,174,239,.16), transparent 58%),
       linear-gradient(158deg, #04293f 0%, #06405f 42%, #02141f 100%);
     color: #cfe4f1;
     overflow: hidden;
@@ -65,7 +66,7 @@
   .fam-hero::after {
     content: ""; position: absolute; z-index: -1; right: -12rem; bottom: -22rem;
     width: 44rem; height: 44rem; border-radius: 50%;
-    background: radial-gradient(circle, rgba(0,174,239,.30), transparent 62%);
+    background: radial-gradient(circle, rgba(0,174,239,.18), transparent 62%);
   }
   .fam-hero-grid { display: grid; gap: 2.6rem; align-items: end; }
   @media (min-width: 64rem) {
@@ -109,7 +110,7 @@
   .fam-card dl { margin: 0; }
   .fam-card div { padding: .5rem 0; border-bottom: 1px solid rgba(127,214,247,.16); }
   .fam-card div:last-child { border-bottom: 0; padding-bottom: 0; }
-  .fam-card dt { font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; color: #7fb9d8; }
+  .fam-card dt { font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; color: #a3cbe4; }
   .fam-card dd { margin: .15rem 0 0; font-size: .92rem; color: #e2eff7; line-height: 1.4; }
 
   /* ---------- sticky utility bar ---------- */
@@ -193,7 +194,7 @@
   /* ---------- the dark anchor panel ---------- */
   .ask-panel {
     grid-column: 1 / -1; border-radius: 26px; padding: 2rem 1.9rem 2.1rem; position: relative; overflow: hidden;
-    background: radial-gradient(100% 130% at 92% 0%, rgba(0,174,239,.22), transparent 60%), linear-gradient(150deg, #04293f, #02141f);
+    background: radial-gradient(100% 130% at 92% 0%, rgba(0,174,239,.16), transparent 60%), linear-gradient(150deg, #04293f, #02141f);
     color: #cfe4f1; border: 1px solid rgba(127,214,247,.22);
   }
   .ask-panel h3 { color: #ffffff; font-size: var(--step-2); letter-spacing: -.02em; margin: 0 0 .5rem; }
@@ -243,8 +244,10 @@
     .js .reveal { opacity: 1 !important; translate: none !important; }
   }
 </style>
+<script>(function(){try{var t=localStorage.getItem("theme");if(t==="dark"||t==="light"){document.documentElement.setAttribute("data-theme",t);}}catch(e){}})();</script>
 </head>
 <body>
+<div class="progress" id="progress" aria-hidden="true"></div>
 <a class="skip" href="#main">Skip to main content</a>
 
 <header class="masthead">
@@ -261,6 +264,11 @@
         <li><a href="es.html" lang="es">Espa&ntilde;ol</a></li>
       </ul>
     </nav>
+      <button type="button" class="theme-toggle" id="theme-toggle" data-verb="Switch to" data-labels="dark theme,light theme">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.4M12 19.6V22M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2 12h2.4M19.6 12H22M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/></svg>
+        <span class="label-dark">Dark</span><span class="label-light">Light</span>
+      </button>
   </div>
 </header>
 
