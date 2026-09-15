@@ -71,7 +71,7 @@
 
   /* the card that sits beside the headline */
   .fam-card {
-    border: 1px solid rgba(127,214,247,.28); border-radius: 16px;
+    border: 1px solid rgba(127,214,247,.28); border-radius: 20px;
     background: rgba(2,20,31,.42); padding: 1.35rem 1.4rem;
     backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px);
   }
@@ -99,8 +99,8 @@
   .fam-bar .set { display: flex; gap: .4rem; align-items: center; }
   .fam-bar .lbl { font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; font-weight: 700; color: var(--muted); margin-right: .3rem; }
   .fam-bar button {
-    font: inherit; font-size: .86rem; padding: .34rem .9rem; cursor: pointer; border-radius: 999px;
-    background: transparent; border: 1px solid var(--rule); color: var(--navy);
+    font: inherit; font-size: .86rem; padding: .5rem 1.05rem; min-height: 2.5rem; cursor: pointer; border-radius: 999px;
+    background: transparent; border: 1px solid var(--control); color: var(--navy);
   }
   .fam-bar button:hover { border-color: var(--cyan); }
   .fam-bar button[aria-pressed="true"] { background: var(--solid); border-color: var(--solid); color: #fff; font-weight: 700; }
@@ -109,8 +109,8 @@
   /* ---------- evidence band ---------- */
   .evidence { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); margin: 1.2rem 0 0; }
   .evidence article {
-    position: relative; background: var(--paper); border: 1px solid var(--rule); border-radius: 14px;
-    padding: 1.15rem 1.25rem 1.3rem; overflow: hidden;
+    position: relative; background: var(--paper); border: 1px solid var(--rule); border-radius: 18px;
+    padding: 1.2rem 1.3rem 1.35rem; overflow: hidden;
   }
   .evidence article::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 3px; background: linear-gradient(90deg, var(--cyan), var(--navy)); }
   .evidence .n {
@@ -126,8 +126,8 @@
   /* ---------- jump chips ---------- */
   .jump { display: flex; flex-wrap: wrap; gap: .45rem; list-style: none; padding: 0; margin: 1.1rem 0 0; }
   .jump a {
-    display: inline-block; font-size: .82rem; padding: .3rem .8rem; border-radius: 999px;
-    border: 1px solid var(--rule); color: var(--navy); text-decoration: none; background: var(--paper);
+    display: inline-block; font-size: .82rem; padding: .45rem .95rem; min-height: 2.25rem; border-radius: 999px;
+    border: 1px solid var(--control); color: var(--navy); text-decoration: none; background: var(--paper);
   }
   .jump a:hover { border-color: var(--cyan); background: var(--wash); }
 
@@ -135,8 +135,8 @@
   .qa-grid { display: grid; gap: 1.15rem; grid-template-columns: repeat(auto-fit, minmax(21rem, 1fr)); margin: 1.3rem 0 0; }
   .qa {
     position: relative; overflow: hidden; scroll-margin-top: 5rem;
-    background: var(--paper); border: 1px solid var(--rule); border-radius: 16px;
-    padding: 1.5rem 1.5rem 1.55rem; max-width: none;
+    background: var(--paper); border: 1px solid var(--rule); border-radius: 22px;
+    padding: 1.55rem 1.55rem 1.6rem; max-width: none;
     transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
   }
   .qa::before {
@@ -149,7 +149,7 @@
     position: absolute; right: .7rem; top: -.6rem; font-family: var(--serif); font-weight: 600;
     font-size: 5.2rem; line-height: 1; color: var(--navy); opacity: .07; pointer-events: none;
   }
-  .qa .q { color: var(--ink); font-weight: 700; font-size: 1.06rem; line-height: 1.28; margin: 0 0 .55rem; position: relative; }
+  .qa h3.q { color: var(--ink); font-family: var(--sans); font-weight: 700; font-size: 1.06rem; line-height: 1.28; letter-spacing: normal; margin: 0 0 .55rem; position: relative; }
   .qa p:last-child { margin-bottom: 0; }
   .qa .tag {
     display: inline-block; font-size: .66rem; letter-spacing: .12em; font-weight: 700;
@@ -162,7 +162,7 @@
 
   /* ---------- the dark anchor panel ---------- */
   .ask-panel {
-    grid-column: 1 / -1; border-radius: 18px; padding: 1.9rem 1.8rem 2rem; position: relative; overflow: hidden;
+    grid-column: 1 / -1; border-radius: 26px; padding: 2rem 1.9rem 2.1rem; position: relative; overflow: hidden;
     background: radial-gradient(100% 130% at 92% 0%, rgba(0,174,239,.22), transparent 60%), linear-gradient(150deg, #04293f, #02141f);
     color: #cfe4f1; border: 1px solid rgba(127,214,247,.22);
   }
@@ -170,7 +170,7 @@
   .ask-panel p { color: #b9d2e2; max-width: 62ch; }
   .ask-tiles { display: grid; gap: .8rem; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); margin-top: 1.3rem; list-style: none; padding: 0; }
   .ask-tiles li {
-    border: 1px solid rgba(127,214,247,.26); border-radius: 12px; padding: .9rem 1rem;
+    border: 1px solid rgba(127,214,247,.26); border-radius: 16px; padding: 1rem 1.1rem;
     background: rgba(0,174,239,.07); color: #e2eff7; font-size: .95rem; line-height: 1.4;
   }
   .ask-tiles li span {
@@ -366,11 +366,11 @@
     <article class="qa reveal" id="q1">
       <span class="ghost" aria-hidden="true">1</span>
       <span class="tag en">EN</span>
-      <p class="q lang-en">What is artificial intelligence, in plain terms?</p>
+      <h3 class="q lang-en">What is artificial intelligence, in plain terms?</h3>
       <p class="lang-en">Most of the tools people mean when they say AI are programs that have read enormous amounts of text and learned to predict what words usually come next. That is why they sound so natural and also why they are sometimes confidently wrong. The program does not know things the way a person does, and it does not know when it has made a mistake.</p>
       <div class="es-block lang-es" lang="es">
         <span class="tag es">ES</span>
-        <p class="q">&iquest;Qu&eacute; es la inteligencia artificial, en palabras sencillas?</p>
+        <h3 class="q">&iquest;Qu&eacute; es la inteligencia artificial, en palabras sencillas?</h3>
         <p>La mayor&iacute;a de estas herramientas son programas que han le&iacute;do cantidades enormes de texto y aprendieron a predecir qu&eacute; palabras suelen seguir. Por eso suenan tan naturales, y por eso tambi&eacute;n se equivocan con mucha seguridad. El programa no sabe las cosas como las sabe una persona, y no se da cuenta cuando comete un error.</p>
       </div>
     </article>
@@ -378,11 +378,11 @@
     <article class="qa reveal" id="q2">
       <span class="ghost" aria-hidden="true">2</span>
       <span class="tag en">EN</span>
-      <p class="q lang-en">Is my child&rsquo;s information safe?</p>
+      <h3 class="q lang-en">Is my child&rsquo;s information safe?</h3>
       <p class="lang-en">It depends entirely on which tool is being used. When a district signs a contract for a tool, California law requires terms about what the company may do with student information, how long it keeps it, and what happens when the district ends the contract. Free tools that a person downloads on their own usually have none of those protections. That is the difference to ask about.</p>
       <div class="es-block lang-es" lang="es">
         <span class="tag es">ES</span>
-        <p class="q">&iquest;Est&aacute; segura la informaci&oacute;n de mi hijo?</p>
+        <h3 class="q">&iquest;Est&aacute; segura la informaci&oacute;n de mi hijo?</h3>
         <p>Depende por completo de cu&aacute;l herramienta se use. Cuando un distrito firma un contrato, la ley de California exige condiciones sobre qu&eacute; puede hacer la empresa con la informaci&oacute;n del estudiante, cu&aacute;nto tiempo la guarda y qu&eacute; pasa cuando termina el contrato. Las herramientas gratuitas que alguien descarga por su cuenta normalmente no tienen ninguna de esas protecciones. Esa es la diferencia que conviene preguntar.</p>
       </div>
     </article>
@@ -390,11 +390,11 @@
     <article class="qa reveal" id="q3">
       <span class="ghost" aria-hidden="true">3</span>
       <span class="tag en">EN</span>
-      <p class="q lang-en">Will a computer decide my child&rsquo;s grade, placement, or discipline?</p>
+      <h3 class="q lang-en">Will a computer decide my child&rsquo;s grade, placement, or discipline?</h3>
       <p class="lang-en">It should not, and you have every right to ask directly. My position is that no decision affecting a student&rsquo;s grade, placement, services, or discipline should rest on an AI output, and that a specific named person should be answerable for any decision that touches your child. If you are ever told that &ldquo;the system&rdquo; decided something, the correct follow up question is who is the person.</p>
       <div class="es-block lang-es" lang="es">
         <span class="tag es">ES</span>
-        <p class="q">&iquest;Una computadora va a decidir la calificaci&oacute;n, la colocaci&oacute;n o la disciplina de mi hijo?</p>
+        <h3 class="q">&iquest;Una computadora va a decidir la calificaci&oacute;n, la colocaci&oacute;n o la disciplina de mi hijo?</h3>
         <p>No deber&iacute;a, y usted tiene todo el derecho de preguntarlo directamente. Mi postura es que ninguna decisi&oacute;n sobre la calificaci&oacute;n, la colocaci&oacute;n, los servicios o la disciplina de un estudiante debe basarse en lo que produce una inteligencia artificial, y que siempre debe haber una persona con nombre responsable de cualquier decisi&oacute;n que afecte a su hijo. Si alguna vez le dicen que &ldquo;el sistema&rdquo; decidi&oacute; algo, la pregunta correcta es qui&eacute;n es la persona.</p>
       </div>
     </article>
@@ -402,11 +402,11 @@
     <article class="qa reveal" id="q4">
       <span class="ghost" aria-hidden="true">4</span>
       <span class="tag en">EN</span>
-      <p class="q lang-en">What happens when it is wrong?</p>
+      <h3 class="q lang-en">What happens when it is wrong?</h3>
       <p class="lang-en">These tools invent facts, sources, and quotes that look completely real. They also tend to be less accurate about smaller communities, less common names, and languages other than English, which means the errors are not spread evenly. Anything important should be checked by a person before it reaches you, and if something you received seems wrong, say so. That report is useful.</p>
       <div class="es-block lang-es" lang="es">
         <span class="tag es">ES</span>
-        <p class="q">&iquest;Qu&eacute; pasa cuando se equivoca?</p>
+        <h3 class="q">&iquest;Qu&eacute; pasa cuando se equivoca?</h3>
         <p>Estas herramientas inventan datos, fuentes y citas que parecen completamente reales. Adem&aacute;s suelen fallar m&aacute;s con comunidades peque&ntilde;as, con nombres menos comunes y con idiomas que no son el ingl&eacute;s, as&iacute; que los errores no se reparten por igual. Todo lo importante debe ser revisado por una persona antes de llegar a usted, y si algo que recibi&oacute; le parece equivocado, d&iacute;galo. Ese aviso sirve.</p>
       </div>
     </article>
@@ -414,11 +414,11 @@
     <article class="qa reveal" id="q5">
       <span class="ghost" aria-hidden="true">5</span>
       <span class="tag en">EN</span>
-      <p class="q lang-en">Can I say no?</p>
+      <h3 class="q lang-en">Can I say no?</h3>
       <p class="lang-en">You can always ask what the alternative is, and there should be one. No family should have to go through an automated system to reach a real person, and no student should be required to use an AI tool to complete required work without another path being available. Ask the school what the alternative is and how to request it.</p>
       <div class="es-block lang-es" lang="es">
         <span class="tag es">ES</span>
-        <p class="q">&iquest;Puedo decir que no?</p>
+        <h3 class="q">&iquest;Puedo decir que no?</h3>
         <p>Usted siempre puede preguntar cu&aacute;l es la alternativa, y debe existir una. Ninguna familia deber&iacute;a tener que pasar por un sistema autom&aacute;tico para llegar a una persona real, y ning&uacute;n estudiante deber&iacute;a estar obligado a usar una herramienta de inteligencia artificial para cumplir con un trabajo si no hay otro camino disponible. Pregunte en la escuela cu&aacute;l es la alternativa y c&oacute;mo solicitarla.</p>
       </div>
     </article>
@@ -426,11 +426,11 @@
     <article class="qa reveal" id="q6">
       <span class="ghost" aria-hidden="true">6</span>
       <span class="tag en">EN</span>
-      <p class="q lang-en">What can we do at home?</p>
+      <h3 class="q lang-en">What can we do at home?</h3>
       <p class="lang-en">Two things help more than any rule. Ask your child to show you what they use and to explain how it works, which teaches them to notice that it is a tool rather than an authority. And when it gives an answer, ask together how you would check whether it is true. That habit protects them far longer than any single policy will.</p>
       <div class="es-block lang-es" lang="es">
         <span class="tag es">ES</span>
-        <p class="q">&iquest;Qu&eacute; podemos hacer en casa?</p>
+        <h3 class="q">&iquest;Qu&eacute; podemos hacer en casa?</h3>
         <p>Dos cosas ayudan m&aacute;s que cualquier regla. P&iacute;dale a su hijo que le muestre lo que usa y que le explique c&oacute;mo funciona, porque eso le ense&ntilde;a a verlo como una herramienta y no como una autoridad. Y cuando le d&eacute; una respuesta, preg&uacute;ntense juntos c&oacute;mo comprobar&iacute;an si es cierta. Ese h&aacute;bito lo va a proteger mucho m&aacute;s tiempo que cualquier pol&iacute;tica.</p>
       </div>
     </article>

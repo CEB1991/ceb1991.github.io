@@ -6,7 +6,7 @@
   body.classList.add('js');
 
   var targets = document.querySelectorAll(
-    '.card, .phase, .tool, .callout, table, figure, .creds section, .qa, .evidence article, details.caveat, .stack > *'
+    '.piece, .phase, .tool, .callout, table, figure, .creds section, .qa, .evidence article, details.caveat, .stack > *'
   );
   Array.prototype.forEach.call(targets, function (el) { el.classList.add('reveal'); });
 
