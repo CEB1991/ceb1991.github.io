@@ -15,6 +15,30 @@
 
   body.only-en .lang-es, body.only-es .lang-en { display: none; }
 
+  /* When both languages are on, inline pairs sit side by side and would otherwise
+     run together as one word. Block-level pairs (p, h2, li) already stack. */
+  body:not(.only-en):not(.only-es) span.lang-es::before {
+    content: "\00a0\00b7\00a0";
+    color: var(--cyan);
+  }
+  /* pairs that stack rather than sit inline take no separator */
+  body:not(.only-en):not(.only-es) .fam-hero h1 span.lang-es::before,
+  body:not(.only-en):not(.only-es) .fam-kicker span.lang-es::before { content: none; }
+  .fam-card dt span.lang-es::before,
+  .fam-sources h2 span.lang-es::before,
+  .evidence .ev-key span.lang-es::before { color: inherit; opacity: .55; }
+
+  /* in both-languages mode the Spanish block needs a visible edge, or the two
+     languages read as one run-on paragraph */
+  body:not(.only-en):not(.only-es) .lede.lang-es,
+  body:not(.only-en):not(.only-es) p.col.lang-es {
+    border-left: 2px solid rgba(0,174,239,.45);
+    padding-left: 1.05rem;
+    margin-top: 1.15rem;
+  }
+  body:not(.only-en):not(.only-es) h2.lang-es { margin-top: .25rem; font-size: var(--step-1); color: var(--navy); }
+  body:not(.only-en):not(.only-es) .jump.lang-es { margin-top: .5rem; }
+
   .fam-bleed {
     margin-inline: calc(50% - 50vw);
     padding-inline: max(var(--gutter), calc(50vw - var(--shell) / 2));
@@ -45,13 +69,16 @@
   }
   .fam-hero-grid { display: grid; gap: 2.6rem; align-items: end; }
   @media (min-width: 64rem) {
-    .fam-hero-grid { grid-template-columns: minmax(0, 1.35fr) minmax(16rem, .65fr); gap: 4rem; }
+    .fam-hero-grid { grid-template-columns: minmax(0, 1.35fr) minmax(16rem, .65fr); gap: 4rem; align-items: start; }
   }
   .fam-kicker {
     font-size: .79rem; letter-spacing: .15em; text-transform: uppercase; font-weight: 600;
     color: var(--cyan-pale); display: flex; align-items: center; gap: .7rem; margin: 0 0 1.2rem;
   }
-  .fam-kicker::before { content: ""; width: 2.4rem; height: 2px; background: var(--cyan); flex: none; }
+  .fam-kicker::before { content: ""; width: 2.4rem; height: 2px; background: var(--cyan); flex: none; margin-top: .5rem; }
+  .fam-kicker { align-items: flex-start; flex-wrap: wrap; }
+  .fam-kicker span { display: block; }
+  .fam-kicker .lang-es { flex-basis: 100%; margin: .3rem 0 0 3.1rem; opacity: .82; }
   .fam-hero h1 {
     color: #ffffff; font-size: var(--step-4); line-height: 1.02; letter-spacing: -.04em;
     max-width: 17ch; margin: 0 0 1.2rem;
@@ -96,7 +123,7 @@
     margin-bottom: 2.4rem;
   }
   @supports not (background: color-mix(in srgb, red 50%, blue)) { .fam-bar { background: var(--paper); } }
-  .fam-bar .set { display: flex; gap: .4rem; align-items: center; }
+  .fam-bar .set { display: flex; gap: .4rem; align-items: center; flex-wrap: wrap; min-width: 0; }
   .fam-bar .lbl { font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; font-weight: 700; color: var(--muted); margin-right: .3rem; }
   .fam-bar button {
     font: inherit; font-size: .86rem; padding: .5rem 1.05rem; min-height: 2.5rem; cursor: pointer; border-radius: 999px;
@@ -105,6 +132,9 @@
   .fam-bar button:hover { border-color: var(--cyan); }
   .fam-bar button[aria-pressed="true"] { background: var(--solid); border-color: var(--solid); color: #fff; font-weight: 700; }
   .fam-bar .print { color: var(--muted); }
+
+  /* the sticky bar would otherwise cover whatever an anchor link jumps to */
+  h2, .evidence article, .fam-sources { scroll-margin-top: 5.5rem; }
 
   /* ---------- evidence band ---------- */
   .evidence { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); margin: 1.2rem 0 0; }
@@ -194,6 +224,9 @@
 
   @media (max-width: 40rem) {
     .qa-grid { grid-template-columns: 1fr; }
+    .fam-bar { gap: .5rem; }
+    .fam-bar .lbl { flex-basis: 100%; margin: 0 0 .1rem; }
+    .fam-bar button { padding: .5rem .8rem; font-size: .82rem; }
     .qa { padding: 1.25rem 1.2rem; }
     .fam-bar { margin-bottom: 1.8rem; }
   }
@@ -342,25 +375,15 @@
   <h2 class="lang-en">The questions, answered</h2>
   <h2 class="lang-es" lang="es">Las preguntas, contestadas</h2>
 
-  <ul class="jump lang-en">
-    <li><a href="#q1">What it is</a></li>
-    <li><a href="#q2">Is my child&rsquo;s information safe</a></li>
-    <li><a href="#q3">Who decides</a></li>
-    <li><a href="#q4">When it is wrong</a></li>
-    <li><a href="#q5">Can I say no</a></li>
-    <li><a href="#q6">At home</a></li>
-    <li><a href="#q7">What to ask the school</a></li>
+  <ul class="jump">
+    <li><a href="#q1"><span class="lang-en">What it is</span><span class="lang-es" lang="es">Qu&eacute; es</span></a></li>
+    <li><a href="#q2"><span class="lang-en">Information safety</span><span class="lang-es" lang="es">La informaci&oacute;n de mi hijo</span></a></li>
+    <li><a href="#q3"><span class="lang-en">Who decides</span><span class="lang-es" lang="es">Qui&eacute;n decide</span></a></li>
+    <li><a href="#q4"><span class="lang-en">When it is wrong</span><span class="lang-es" lang="es">Cuando se equivoca</span></a></li>
+    <li><a href="#q5"><span class="lang-en">Can I say no</span><span class="lang-es" lang="es">&iquest;Puedo decir que no?</span></a></li>
+    <li><a href="#q6"><span class="lang-en">At home</span><span class="lang-es" lang="es">En casa</span></a></li>
+    <li><a href="#q7"><span class="lang-en">What to ask the school</span><span class="lang-es" lang="es">Qu&eacute; preguntar en la escuela</span></a></li>
   </ul>
-  <ul class="jump lang-es" lang="es">
-    <li><a href="#q1">Qu&eacute; es</a></li>
-    <li><a href="#q2">La informaci&oacute;n de mi hijo</a></li>
-    <li><a href="#q3">Qui&eacute;n decide</a></li>
-    <li><a href="#q4">Cuando se equivoca</a></li>
-    <li><a href="#q5">&iquest;Puedo decir que no?</a></li>
-    <li><a href="#q6">En casa</a></li>
-    <li><a href="#q7">Qu&eacute; preguntar en la escuela</a></li>
-  </ul>
-
   <div class="qa-grid">
 
     <article class="qa reveal" id="q1">
