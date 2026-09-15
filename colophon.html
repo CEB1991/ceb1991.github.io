@@ -7,7 +7,7 @@
 <title>How this site was made | Carlos Beleche</title>
 <meta name="description" content="Disclosure of how this portfolio was built, including where AI assistance was used and what was reviewed by hand, plus an accessibility statement.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23005488'/%3E%3Cpath d='M6 22V10h4l6 8V10h4v12h-4l-6-8v8z' fill='%2300aeef'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="assets/style.css?v=4">
+<link rel="stylesheet" href="assets/style.css?v=5">
 <script>(function(){try{var t=localStorage.getItem("theme");if(t==="dark"||t==="light"){document.documentElement.setAttribute("data-theme",t);}}catch(e){}})();</script>
 </head>
 <body>
@@ -28,10 +28,13 @@
         <li><a href="es.html" lang="es">Español</a></li>
       </ul>
     </nav>
-      <button type="button" class="theme-toggle" id="theme-toggle" data-verb="Switch to" data-labels="dark theme,light theme">
-        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
-        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.4M12 19.6V22M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2 12h2.4M19.6 12H22M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/></svg>
-        <span class="label-dark">Dark</span><span class="label-light">Light</span>
+      <button type="button" class="theme-toggle" id="theme-toggle" role="switch" aria-checked="false">
+        <span class="switch" aria-hidden="true">
+          <svg class="ico ico-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2.6v2M12 19.4v2M4.2 4.2l1.5 1.5M18.3 18.3l1.5 1.5M2.6 12h2M19.4 12h2M4.2 19.8l1.5-1.5M18.3 5.7l1.5-1.5"/></svg>
+          <svg class="ico ico-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 13.2A8.2 8.2 0 1 1 10.8 3.5a6.4 6.4 0 0 0 9.7 9.7z"/></svg>
+          <span class="knob"></span>
+        </span>
+        <span class="sr-only">Dark theme</span>
       </button>
   </div>
 </header>
@@ -109,7 +112,7 @@
   </div>
 </footer>
 
-<script src="assets/enhance.js?v=1" defer></script>
+<script src="assets/enhance.js?v=2" defer></script>
 
 </body>
 </html>

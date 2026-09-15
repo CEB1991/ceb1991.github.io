@@ -8,7 +8,7 @@
 
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---------- theme toggle ---------- */
+  /* ---------- theme switch ---------- */
   var toggle = document.getElementById('theme-toggle');
   if (toggle) {
     var systemDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -18,28 +18,25 @@
       if (set === 'dark' || set === 'light') return set;
       return systemDark ? 'dark' : 'light';
     }
-    function describe() {
-      var next = activeTheme() === 'dark' ? 'light' : 'dark';
-      var labels = toggle.getAttribute('data-labels') || 'dark,light';
-      var parts = labels.split(',');
-      var word = next === 'dark' ? parts[0] : parts[1];
-      var verb = toggle.getAttribute('data-verb') || 'Switch to';
-      toggle.setAttribute('aria-label', verb + ' ' + word);
-      toggle.setAttribute('title', verb + ' ' + word);
+    function sync() {
+      var dark = activeTheme() === 'dark';
+      toggle.setAttribute('aria-checked', dark ? 'true' : 'false');
+      var name = toggle.getAttribute('data-name') || 'Dark theme';
+      toggle.setAttribute('title', name);
     }
     toggle.addEventListener('click', function () {
       var next = activeTheme() === 'dark' ? 'light' : 'dark';
       root.setAttribute('data-theme', next);
       try { localStorage.setItem('theme', next); } catch (e) {}
-      describe();
+      sync();
     });
     if (window.matchMedia) {
       var mq = window.matchMedia('(prefers-color-scheme: dark)');
-      var onChange = function (e) { systemDark = e.matches; describe(); };
+      var onChange = function (e) { systemDark = e.matches; sync(); };
       if (mq.addEventListener) { mq.addEventListener('change', onChange); }
       else if (mq.addListener) { mq.addListener(onChange); }
     }
-    describe();
+    sync();
   }
 
   /* ---------- reading progress ---------- */
@@ -76,6 +73,11 @@
       el.style.transitionDelay = Math.min(i % 4, 3) * 60 + 'ms';
       observer.observe(el);
     });
+    // If anything stops the observer from firing, show everything anyway.
+    // Nothing on this site should ever be permanently invisible.
+    window.setTimeout(function () {
+      Array.prototype.forEach.call(targets, function (el) { el.classList.add('in'); });
+    }, 2500);
   }
 
   /* ---------- count up the county figures ---------- */
