@@ -8,6 +8,7 @@
 <meta name="description" content="Plain language answers for families about artificial intelligence in schools, written directly in English and Spanish, with the topics drawn from published national surveys of parents.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23005488'/%3E%3Cpath d='M6 22V10h4l6 8V10h4v12h-4l-6-8v8z' fill='%2300aeef'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="assets/style.css?v=5">
+<noscript><style>body.only-en .lang-es, body.only-en .nav-es { display: revert; }</style></noscript>
 <style>
   /* ==========================================================================
      For families / Para familias
@@ -15,9 +16,10 @@
      ========================================================================== */
 
   body.only-en .lang-es, body.only-es .lang-en { display: none; }
-  .nav-es { display: none; }
-  body.only-es .nav-es { display: inline-block; }
-  body.only-es .nav-en { display: none; }
+  /* the headline rule below sets display:block at equal specificity, so it needs beating */
+  body.only-en .fam-hero h1 .lang-es, body.only-es .fam-hero h1 .lang-en { display: none; }
+  /* two classes, so this beats the global .masthead nav a rule */
+  body.only-en .nav-es, body.only-es .nav-en { display: none; }
 
   /* When both languages are on, inline pairs sit side by side and would otherwise
      run together as one word. Block-level pairs (p, h2, li) already stack. */
@@ -51,7 +53,7 @@
   /* ---------- hero ---------- */
   .fam-hero {
     position: relative;
-    padding-block: clamp(3rem, 7vw, 5.5rem);
+    padding-block: clamp(2.8rem, 6vw, 4.4rem) clamp(2.2rem, 4.5vw, 3.2rem);
     background:
       radial-gradient(120% 90% at 88% 8%, rgba(0,174,239,.16), transparent 58%),
       linear-gradient(158deg, #04293f 0%, #06405f 42%, #02141f 100%);
@@ -94,11 +96,6 @@
     margin-top: .6rem; max-width: 22ch;
   }
   .fam-hero .lede { color: #b9d2e2; max-width: 54ch; font-size: var(--step-1); margin: 0; }
-  .fam-chips { display: flex; flex-wrap: wrap; gap: .45rem; list-style: none; padding: 0; margin: 1.7rem 0 0; }
-  .fam-chips li {
-    font-size: .77rem; letter-spacing: .01em; color: #cfe4f1; padding: .3rem .8rem; border-radius: 999px;
-    border: 1px solid rgba(127,214,247,.34); background: rgba(0,174,239,.10);
-  }
 
   /* the card that sits beside the headline */
   .fam-card {
@@ -116,29 +113,7 @@
   .fam-card dt { font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; color: #a3cbe4; }
   .fam-card dd { margin: .15rem 0 0; font-size: .92rem; color: #e2eff7; line-height: 1.4; }
 
-  /* ---------- sticky utility bar ---------- */
-  .fam-bar {
-    position: sticky; top: 0; z-index: 30;
-    display: flex; flex-wrap: wrap; gap: .8rem; align-items: center; justify-content: space-between;
-    padding-block: .7rem;
-    background: color-mix(in srgb, var(--paper) 88%, transparent);
-    backdrop-filter: saturate(140%) blur(8px); -webkit-backdrop-filter: saturate(140%) blur(8px);
-    border-bottom: 1px solid var(--rule-soft);
-    margin-bottom: 2.4rem;
-  }
-  @supports not (background: color-mix(in srgb, red 50%, blue)) { .fam-bar { background: var(--paper); } }
-  .fam-bar .set { display: flex; gap: .4rem; align-items: center; flex-wrap: wrap; min-width: 0; }
-  .fam-bar .lbl { font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; font-weight: 700; color: var(--muted); margin-right: .3rem; }
-  .fam-bar button {
-    font: inherit; font-size: .86rem; padding: .5rem 1.05rem; min-height: 2.5rem; cursor: pointer; border-radius: 999px;
-    background: transparent; border: 1px solid var(--control); color: var(--navy);
-  }
-  .fam-bar button:hover { border-color: var(--cyan); }
-  .fam-bar button[aria-pressed="true"] { background: var(--solid); border-color: var(--solid); color: #fff; font-weight: 700; }
-  .fam-bar .print { color: var(--muted); }
-
-  /* the sticky bar would otherwise cover whatever an anchor link jumps to */
-  h2, .evidence article, .fam-sources { scroll-margin-top: 5.5rem; }
+  h2, .evidence article, .fam-sources, .qa { scroll-margin-top: 1.5rem; }
 
   /* ---------- evidence band ---------- */
   .evidence { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); margin: 1.2rem 0 0; }
@@ -166,6 +141,8 @@
   .jump a:hover { border-color: var(--cyan); background: var(--wash); }
 
   /* ---------- question cards ---------- */
+  .print-row { margin: 0 0 2.2rem; }
+
   .qa-grid { display: grid; gap: 1.15rem; grid-template-columns: repeat(auto-fit, minmax(21rem, 1fr)); margin: 1.3rem 0 0; }
   .qa {
     position: relative; overflow: hidden; scroll-margin-top: 5rem;
@@ -228,18 +205,14 @@
 
   @media (max-width: 40rem) {
     .qa-grid { grid-template-columns: 1fr; }
-    .fam-bar { gap: .5rem; }
-    .fam-bar .lbl { flex-basis: 100%; margin: 0 0 .1rem; }
-    .fam-bar button { padding: .5rem .8rem; font-size: .82rem; }
     .qa { padding: 1.25rem 1.2rem; }
-    .fam-bar { margin-bottom: 1.8rem; }
   }
 
   @media print {
-    .fam-bar, .jump { display: none; }
+    .print-row, .jump { display: none; }
     .fam-hero, .ask-panel { background: #ffffff !important; color: #000; padding-block: 0; }
     .fam-hero::before, .fam-hero::after, .qa .ghost { display: none; }
-    .fam-hero h1, .fam-hero h1 .lang-es, .fam-hero .lede, .fam-chips li,
+    .fam-hero h1, .fam-hero h1 .lang-es, .fam-hero .lede,
     .ask-panel h3, .ask-panel p, .ask-tiles li, .ask-tiles li span, .fam-card dd, .fam-card dt, .fam-card h2 { color: #000 !important; }
     .fam-bleed { margin-inline: 0; padding-inline: 0; }
     .qa-grid, .evidence, .ask-tiles { display: block; }
@@ -249,7 +222,7 @@
 </style>
 <script>(function(){try{var t=localStorage.getItem("theme");if(t==="dark"||t==="light"){document.documentElement.setAttribute("data-theme",t);}}catch(e){}})();</script>
 </head>
-<body>
+<body class="only-en">
 <div class="progress" id="progress" aria-hidden="true"></div>
 <a class="skip" href="#main">Skip to main content / Ir al contenido principal</a>
 
@@ -266,6 +239,11 @@
         <li><a href="colophon.html" class="nav-en">How this was made</a><a href="como-se-hizo.html" class="nav-es" lang="es">C&oacute;mo se hizo</a></li>
       </ul>
     </nav>
+    <div class="masthead-tools">
+      <div class="lang-switch" role="group" aria-label="Language / Idioma" id="lang-switch">
+        <button type="button" data-view="en" aria-pressed="true">EN<span class="sr-only"> English</span></button>
+        <button type="button" data-view="es" aria-pressed="false" lang="es">ES<span class="sr-only" lang="es"> Espa&ntilde;ol</span></button>
+      </div>
       <button type="button" class="theme-toggle" id="theme-toggle" role="switch" aria-checked="false">
         <span class="switch" aria-hidden="true">
           <svg class="ico ico-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2.6v2M12 19.4v2M4.2 4.2l1.5 1.5M18.3 18.3l1.5 1.5M2.6 12h2M19.4 12h2M4.2 19.8l1.5-1.5M18.3 5.7l1.5-1.5"/></svg>
@@ -274,6 +252,7 @@
         </span>
         <span class="sr-only">Dark theme / Tema oscuro</span>
       </button>
+    </div>
   </div>
 </header>
 
@@ -286,11 +265,6 @@
         <h1 id="famtitle"><span class="lang-en">Artificial intelligence at your child&rsquo;s school</span><span class="lang-es" lang="es">La inteligencia artificial en la escuela de su hijo</span></h1>
         <p class="lede lang-en">Seven questions, answered in plain language. I did not survey San Diego families to write this, so the topics come from somewhere you can check: published national surveys of parents, which land on privacy, accuracy, and whether a person is accountable. Written directly in English and in Spanish, because a translated slide deck is not the same as a document written for the family reading it.</p>
         <p class="lede lang-es" lang="es">Siete preguntas, contestadas en lenguaje sencillo. No hice una encuesta a las familias de San Diego para escribir esto, as&iacute; que los temas vienen de algo que usted puede verificar: encuestas nacionales publicadas sobre lo que dicen los padres de familia, y lo que dicen se concentra en la privacidad, en los errores y en qui&eacute;n responde por las decisiones. Escritas directamente en espa&ntilde;ol y en ingl&eacute;s, porque una presentaci&oacute;n traducida no es lo mismo que un documento escrito para la familia que lo va a leer.</p>
-        <ul class="fam-chips">
-          <li><span class="lang-en">Plain language, no jargon</span><span class="lang-es" lang="es">Lenguaje sencillo, sin tecnicismos</span></li>
-          <li><span class="lang-en">Written in both languages, not translated</span><span class="lang-es" lang="es">Escrito en los dos idiomas, no traducido</span></li>
-          <li><span class="lang-en">Topics sourced, not assumed</span><span class="lang-es" lang="es">Temas con fuente, no supuestos</span></li>
-        </ul>
       </div>
       <div class="fam-card">
         <h2><span class="lang-en">About this page</span><span class="lang-es" lang="es">Sobre esta p&aacute;gina</span></h2>
@@ -316,17 +290,7 @@
     </div>
   </section>
 
-  <div class="fam-bar fam-bleed">
-    <div class="set" role="group" aria-label="Language">
-      <span class="lbl">Idioma / Language</span>
-      <button type="button" id="btn-both" aria-pressed="true">Both / Ambos</button>
-      <button type="button" id="btn-en" aria-pressed="false">English</button>
-      <button type="button" id="btn-es" aria-pressed="false" lang="es">Espa&ntilde;ol</button>
-    </div>
-    <div class="set">
-      <button type="button" class="print" id="btn-print"><span class="lang-en">Print this guide</span><span class="lang-es" lang="es">Imprimir esta gu&iacute;a</span></button>
-    </div>
-  </div>
+  <p class="print-row"><button type="button" class="btn ghost" id="btn-print"><span class="lang-en">Print this guide</span><span class="lang-es" lang="es">Imprimir esta gu&iacute;a</span></button></p>
 
   <h2 class="lang-en">Where these questions come from</h2>
   <h2 class="lang-es" lang="es">De d&oacute;nde salen estas preguntas</h2>
@@ -518,27 +482,26 @@
     var stored = null;
     try { stored = localStorage.getItem('lang'); } catch (e) {}
 
-    var buttons = { both: document.getElementById('btn-both'), en: document.getElementById('btn-en'), es: document.getElementById('btn-es') };
+    var group = document.getElementById('lang-switch');
+    var btns = group ? group.querySelectorAll('button[data-view]') : [];
+
     function set(mode) {
       body.classList.remove('only-en', 'only-es');
-      if (mode === 'en') { body.classList.add('only-en'); }
-      if (mode === 'es') { body.classList.add('only-es'); }
+      body.classList.add(mode === 'es' ? 'only-es' : 'only-en');
       document.documentElement.lang = (mode === 'es') ? 'es' : 'en';
-      if (mode === 'es' || mode === 'en') {
-        try { localStorage.setItem('lang', mode); } catch (e) {}
-      }
-      Object.keys(buttons).forEach(function (k) {
-        buttons[k].setAttribute('aria-pressed', String(k === mode));
+      try { localStorage.setItem('lang', mode); } catch (e) {}
+      Array.prototype.forEach.call(btns, function (b) {
+        b.setAttribute('aria-pressed', String(b.getAttribute('data-view') === mode));
       });
     }
-    if (stored === 'es') { set('es'); }
-    buttons.both.addEventListener('click', function () { set('both'); });
-    buttons.en.addEventListener('click', function () { set('en'); });
-    buttons.es.addEventListener('click', function () { set('es'); });
+
+    Array.prototype.forEach.call(btns, function (b) {
+      b.addEventListener('click', function () { set(b.getAttribute('data-view')); });
+    });
+    set(stored === 'es' ? 'es' : 'en');
 
     var print = document.getElementById('btn-print');
     if (print) { print.addEventListener('click', function () { window.print(); }); }
-
   })();
 </script>
 

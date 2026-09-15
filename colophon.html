@@ -27,9 +27,13 @@
         <li><a href="professional-learning.html">Professional learning</a></li>
         <li><a href="familias.html">For families</a></li>
         <li><a href="colophon.html" aria-current="page">How this was made</a></li>
-        <li><a href="como-se-hizo.html" lang="es" data-setlang="es">Español</a></li>
       </ul>
     </nav>
+    <div class="masthead-tools">
+      <div class="lang-switch" role="group" aria-label="Language">
+        <span class="on" aria-current="true">EN<span class="sr-only"> (current language)</span></span>
+        <a href="como-se-hizo.html" lang="es" data-setlang="es">ES<span class="sr-only" lang="es"> Cambiar a espa&ntilde;ol</span></a>
+      </div>
       <button type="button" class="theme-toggle" id="theme-toggle" role="switch" aria-checked="false">
         <span class="switch" aria-hidden="true">
           <svg class="ico ico-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2.6v2M12 19.4v2M4.2 4.2l1.5 1.5M18.3 18.3l1.5 1.5M2.6 12h2M19.4 12h2M4.2 19.8l1.5-1.5M18.3 5.7l1.5-1.5"/></svg>
@@ -38,6 +42,7 @@
         </span>
         <span class="sr-only">Dark theme</span>
       </button>
+    </div>
   </div>
 </header>
 
@@ -93,7 +98,7 @@
     <li>Responsive layout that reflows to a single column on a phone with no horizontal scrolling, and every button, toggle, and navigation link sized to at least a 24 pixel target.</li>
       <li>A light and dark theme toggle in the header. It follows your system setting until you choose, then remembers your choice across pages.</li>
     <li>Motion is limited to a short fade as sections come into view, a count up on the four county figures, and a reading progress line. None of it is required to read anything, and all of it is switched off when your system asks for reduced motion.</li>
-    <li>The language toggle on the family guide is progressive: with scripting disabled, both languages remain visible rather than the content disappearing.</li>
+    <li>An EN / ES switch in the header, next to the theme switch. Every page has a Spanish counterpart, the choice is remembered across pages, and it only changes when you change it. The family guide is one page in both languages, so there the switch changes the page in place, and with scripting disabled both languages remain visible rather than the content disappearing.</li>
     <li>The interactive tools are keyboard operable, announce their results to screen readers through a live region, and degrade to plain readable content when scripting is unavailable.</li>
     <li>Charts and diagrams are inline SVG with a title and a description, so the content is available to a screen reader rather than locked inside an image.</li>
     <li>The site follows your system light or dark setting, and every page has a print stylesheet so it can be used as a paper handout with the navigation stripped and link destinations spelled out.</li>
