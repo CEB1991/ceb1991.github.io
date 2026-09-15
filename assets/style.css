@@ -126,13 +126,25 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
   font-size: 1.1rem; font-weight: 800; letter-spacing: -.02em;
   color: var(--ink); text-decoration: none; line-height: 1.25;
 }
-.wordmark span { display: block; font-size: .77rem; font-weight: 400; letter-spacing: 0; color: var(--muted); margin-top: .1rem; }
-.masthead nav { margin-left: auto; }
-.masthead-inner { align-items: center; }
-.masthead nav ul { list-style: none; display: flex; flex-wrap: wrap; gap: .35rem 1.15rem; margin: 0; padding: 0; font-size: .94rem; }
+.wordmark span { display: block; max-width: 16rem; font-size: .77rem; font-weight: 400; letter-spacing: 0; color: var(--muted); margin-top: .1rem; }
+/* The header is: wordmark, nav, then the two controls, always in that visual
+   order. The nav is the only part allowed to shrink or wrap internally, so a
+   longer menu on one page can never push the controls onto a second row. */
+.masthead-inner { align-items: center; flex-wrap: wrap; }
+.masthead .wordmark { flex: 0 1 auto; min-width: 0; }
+.masthead nav { flex: 1 1 0; min-width: 0; margin-left: auto; }   /* basis 0, so the line never overflows and the nav wraps inside itself */
+.masthead-tools { flex: 0 0 auto; }
+.masthead nav ul { list-style: none; display: flex; flex-wrap: wrap; justify-content: flex-end; gap: .3rem .95rem; margin: 0; padding: 0; font-size: .9rem; }
 .masthead nav a { text-decoration: none; color: var(--text); display: inline-block; padding: .35rem 0 .3rem; min-height: 1.6rem; border-bottom: 2px solid transparent; }
 .masthead nav a:hover { border-bottom-color: var(--cyan); color: var(--ink); }
-.masthead nav a[aria-current="page"] { border-bottom-color: var(--navy); font-weight: 700; color: var(--navy); }
+/* bold the current item without changing its width, so page to page the menu
+   measures the same */
+.masthead nav a[aria-current="page"] { border-bottom-color: var(--navy); color: var(--navy); font-weight: 700; }
+.masthead nav li { position: relative; }
+.masthead nav a[aria-current="page"]::after {
+  content: attr(data-label); font-weight: 700; height: 0; overflow: hidden;
+  display: block; visibility: hidden;
+}
 
 .sr-only {
   position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
@@ -528,6 +540,19 @@ footer.site .disclaim { max-width: 62ch; margin-top: .85rem; }
 @media (prefers-reduced-motion: reduce) {
   .js .reveal { opacity: 1 !important; translate: none !important; }
   .piece:hover, .tool:hover { transform: none; }
+}
+
+@media (max-width: 62rem) {
+  .masthead nav { order: 3; flex-basis: 100%; margin-left: 0; }
+  .masthead nav ul { justify-content: flex-start; }
+}
+
+@media (max-width: 26rem) {
+  .masthead-inner { gap: .6rem 1rem; padding-inline: 1rem; }
+  /* basis 0 again: the wordmark wraps inside itself rather than pushing the
+     controls onto a second row */
+  .masthead .wordmark { flex: 1 1 0; min-width: 0; font-size: 1rem; }
+  .masthead .wordmark span { max-width: none; }
 }
 
 @media (max-width: 40rem) {

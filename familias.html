@@ -216,11 +216,11 @@
 </head>
 <body class="only-en">
 <div class="progress" id="progress" aria-hidden="true"></div>
-<a class="skip" href="#main">Skip to main content / Ir al contenido principal</a>
+<a class="skip" href="#main"><span class="lang-en">Skip to main content</span><span class="lang-es" lang="es">Ir al contenido principal</span></a>
 
 <header class="masthead">
   <div class="masthead-inner">
-    <a class="wordmark" href="index.html">Carlos Eduardo Beleche<span>AI program leader / L&iacute;der de programas de IA</span></a>
+    <a class="wordmark" href="index.html">Carlos Eduardo Beleche<span><span class="lang-en">AI program leader, educational technology and data systems</span><span class="lang-es" lang="es">L&iacute;der de programas de IA, tecnolog&iacute;a educativa y sistemas de datos</span></span></a>
     <nav aria-label="Main">
       <ul>
         <li><a href="index.html" class="nav-en">Home</a><a href="es.html" class="nav-es" lang="es">Inicio</a></li>
@@ -242,7 +242,7 @@
           <svg class="ico ico-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 13.2A8.2 8.2 0 1 1 10.8 3.5a6.4 6.4 0 0 0 9.7 9.7z"/></svg>
           <span class="knob"></span>
         </span>
-        <span class="sr-only">Dark theme / Tema oscuro</span>
+        <span class="sr-only"><span class="lang-en">Dark theme</span><span class="lang-es" lang="es">Tema oscuro</span></span>
       </button>
     </div>
   </div>
@@ -500,7 +500,7 @@
     var group = document.getElementById('lang-switch');
     var btns = group ? group.querySelectorAll('button[data-view]') : [];
 
-    function set(mode) {
+    function set(mode, persist) {
       body.classList.remove('only-en', 'only-es');
       body.classList.add(mode === 'es' ? 'only-es' : 'only-en');
       document.documentElement.lang = (mode === 'es') ? 'es' : 'en';
@@ -509,16 +509,17 @@
         if (c.desc) { c.desc.textContent = (mode === 'es' && c.descEs) ? c.descEs : c.descEn; }
         if (c.labelEs) { c.svg.setAttribute('aria-label', mode === 'es' ? c.labelEs : c.labelEn); }
       });
-      try { localStorage.setItem('lang', mode); } catch (e) {}
+      // only a click changes the site wide preference, never merely loading the page
+      if (persist) { try { localStorage.setItem('lang', mode); } catch (e) {} }
       Array.prototype.forEach.call(btns, function (b) {
         b.setAttribute('aria-pressed', String(b.getAttribute('data-view') === mode));
       });
     }
 
     Array.prototype.forEach.call(btns, function (b) {
-      b.addEventListener('click', function () { set(b.getAttribute('data-view')); });
+      b.addEventListener('click', function () { set(b.getAttribute('data-view'), true); });
     });
-    set(stored === 'es' ? 'es' : 'en');
+    set(stored === 'es' ? 'es' : 'en', false);
 
     var print = document.getElementById('btn-print');
     if (print) { print.addEventListener('click', function () { window.print(); }); }
