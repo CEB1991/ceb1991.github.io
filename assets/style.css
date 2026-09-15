@@ -139,36 +139,38 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
   overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0;
 }
 
-/* Language switch: a two segment pill, EN and ES, beside the theme switch. */
+/* The two header controls share one size, so they read as a pair.
+   --ctl-w and --ctl-h are the outer pill for both. */
+:root { --ctl-w: 4.25rem; --ctl-h: 2.25rem; }
+
+.masthead-tools { display: flex; align-items: center; gap: .5rem; margin-left: auto; }
+
+/* Language switch: two segments, EN and ES. */
 .lang-switch {
-  margin-left: auto; display: inline-flex; align-items: stretch;
+  display: inline-flex; align-items: stretch; margin-left: 0;
+  width: var(--ctl-w); height: var(--ctl-h);
   border: 1px solid var(--control); border-radius: 999px; overflow: hidden;
-  font-size: .78rem; font-weight: 700; letter-spacing: .06em;
+  font-size: .72rem; font-weight: 700; letter-spacing: .04em;
 }
 .lang-switch > * {
-  display: inline-flex; align-items: center; justify-content: center;
-  min-width: 2.6rem; min-height: 2.25rem; padding: 0 .1rem;
-  font: inherit; background: transparent; border: 0; cursor: pointer;
-  color: var(--navy); text-decoration: none;
+  flex: 1 1 50%; display: inline-flex; align-items: center; justify-content: center;
+  font: inherit; background: transparent; border: 0; padding: 0; cursor: pointer;
+  color: var(--navy); text-decoration: none; line-height: 1;
   transition: background .18s ease, color .18s ease;
 }
 .lang-switch > *:first-child { border-right: 1px solid var(--control); }
 .lang-switch a:hover, .lang-switch button:hover { background: var(--wash); }
 .lang-switch .on, .lang-switch [aria-pressed="true"] { background: var(--solid); color: #ffffff; cursor: default; }
-.lang-switch span.on { cursor: default; }
-/* the two controls travel together and wrap as one unit */
-.masthead-tools { display: flex; align-items: center; gap: .45rem; margin-left: auto; }
-.masthead-tools .lang-switch, .masthead-tools .theme-toggle { margin-left: 0; }
 
-/* Theme switch: a track with a sliding knob, sized to a comfortable target. */
+/* Theme switch: the same pill, with a knob that slides across it. */
 .theme-toggle {
-  margin-left: auto; display: inline-flex; align-items: center; justify-content: center;
-  padding: .5rem; min-height: 2.5rem; min-width: 2.5rem;
+  display: inline-flex; align-items: center; margin-left: 0; padding: 0;
+  width: var(--ctl-w); height: var(--ctl-h);
   background: none; border: 0; border-radius: 999px; cursor: pointer; color: var(--muted);
 }
 .theme-toggle .switch {
-  position: relative; display: inline-flex; align-items: center; justify-content: space-between;
-  width: 3.05rem; height: 1.6rem; padding: 0 .3rem; border-radius: 999px;
+  position: relative; display: flex; align-items: center; justify-content: space-between;
+  width: 100%; height: 100%; padding: 0 .42rem; border-radius: 999px;
   background: var(--wash); border: 1px solid var(--control);
   transition: background .22s ease, border-color .22s ease;
 }
@@ -176,12 +178,12 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 .theme-toggle .ico-sun { color: #ffffff; opacity: 1; }          /* sits on the knob */
 .theme-toggle .ico-moon { color: var(--muted); opacity: .8; }
 .theme-toggle .knob {
-  position: absolute; top: 50%; left: .16rem; width: 1.16rem; height: 1.16rem; margin-top: -.58rem;
+  position: absolute; top: 50%; left: .16rem; width: 1.6rem; height: 1.6rem; margin-top: -.8rem;
   border-radius: 50%; background: #005488; z-index: 0;
   transition: transform .22s cubic-bezier(.22,.61,.36,1), background .22s ease;
 }
 .theme-toggle:hover .switch { border-color: var(--navy); }
-.theme-toggle[aria-checked="true"] .knob { transform: translateX(1.38rem); background: #00aeef; }
+.theme-toggle[aria-checked="true"] .knob { transform: translateX(2.15rem); background: #00aeef; }
 .theme-toggle[aria-checked="true"] .ico-sun { color: var(--muted); opacity: .8; }
 .theme-toggle[aria-checked="true"] .ico-moon { color: #04293f; opacity: 1; }   /* sits on the knob */
 @media (prefers-reduced-motion: reduce) {

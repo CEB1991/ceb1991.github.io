@@ -16,6 +16,7 @@
      ========================================================================== */
 
   body.only-en .lang-es, body.only-es .lang-en { display: none; }
+  body.only-en text.lang-es, body.only-es text.lang-en { display: none; }
   /* the headline rule below sets display:block at equal specificity, so it needs beating */
   body.only-en .fam-hero h1 .lang-es, body.only-es .fam-hero h1 .lang-en { display: none; }
   /* two classes, so this beats the global .masthead nav a rule */
@@ -43,7 +44,6 @@
     margin-top: 1.15rem;
   }
   body:not(.only-en):not(.only-es) h2.lang-es { margin-top: .25rem; font-size: var(--step-1); color: var(--navy); }
-  body:not(.only-en):not(.only-es) .jump.lang-es { margin-top: .5rem; }
 
   .fam-bleed {
     margin-inline: calc(50% - 50vw);
@@ -132,14 +132,6 @@
   .ev-num { font-family: var(--serif); font-weight: 600; fill: var(--ink); }
   .ev-key { font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
 
-  /* ---------- jump chips ---------- */
-  .jump { display: flex; flex-wrap: wrap; gap: .45rem; list-style: none; padding: 0; margin: 1.1rem 0 0; }
-  .jump a {
-    display: inline-block; font-size: .82rem; padding: .45rem .95rem; min-height: 2.25rem; border-radius: 999px;
-    border: 1px solid var(--control); color: var(--navy); text-decoration: none; background: var(--paper);
-  }
-  .jump a:hover { border-color: var(--cyan); background: var(--wash); }
-
   /* ---------- question cards ---------- */
   .print-row { margin: 0 0 2.2rem; }
 
@@ -209,7 +201,7 @@
   }
 
   @media print {
-    .print-row, .jump { display: none; }
+    .print-row { display: none; }
     .fam-hero, .ask-panel { background: #ffffff !important; color: #000; padding-block: 0; }
     .fam-hero::before, .fam-hero::after, .qa .ghost { display: none; }
     .fam-hero h1, .fam-hero h1 .lang-es, .fam-hero .lede,
@@ -300,13 +292,17 @@
   <div class="evidence">
     <article>
       <span class="ev-key"><span class="lang-en">Use, and what parents think</span><span class="lang-es" lang="es">Uso, y lo que creen los padres</span></span>
-      <svg viewBox="0 0 300 96" role="img" aria-labelledby="gaptitle gapdesc">
+      <svg viewBox="0 0 300 96" role="img" aria-labelledby="gaptitle gapdesc"
+           data-title-es="Uso de la inteligencia artificial entre adolescentes frente a lo que creen los padres"
+           data-desc-es="El 64 por ciento de los adolescentes dice usar estos programas. El 51 por ciento de los padres cree que su propio hijo los usa.">
         <title id="gaptitle">Teen AI use against parent estimates</title>
         <desc id="gapdesc">Sixty four percent of teens say they use AI chatbots. Fifty one percent of parents believe their own teen does.</desc>
-        <text x="0" y="14" font-size="11" font-weight="700" fill="var(--muted)">TEENS</text>
+        <text x="0" y="14" font-size="11" font-weight="700" fill="var(--muted)" class="lang-en">TEENS</text>
+        <text x="0" y="14" font-size="10" font-weight="700" fill="var(--muted)" class="lang-es" lang="es">ADOLESCENTES</text>
         <rect x="0" y="20" width="192" height="16" rx="3" fill="var(--cyan)"></rect>
         <text x="200" y="33" class="ev-num" font-size="15">64%</text>
-        <text x="0" y="62" font-size="11" font-weight="700" fill="var(--muted)">PARENTS</text>
+        <text x="0" y="62" font-size="11" font-weight="700" fill="var(--muted)" class="lang-en">PARENTS</text>
+        <text x="0" y="62" font-size="10" font-weight="700" fill="var(--muted)" class="lang-es" lang="es">PADRES</text>
         <rect x="0" y="68" width="153" height="16" rx="3" fill="var(--navy)"></rect>
         <text x="200" y="81" class="ev-num" font-size="15">51%</text>
       </svg>
@@ -317,7 +313,8 @@
     <article>
       <span class="ev-key"><span class="lang-en">What parents want</span><span class="lang-es" lang="es">Lo que quieren los padres</span></span>
       <span class="n">8 of 10</span>
-      <svg viewBox="0 0 300 30" role="img" aria-label="Eight of ten parents want stronger guardrails on AI for children">
+      <svg viewBox="0 0 300 30" role="img" aria-label="Eight of ten parents want stronger guardrails on AI for children"
+           data-label-es="Ocho de cada diez padres quieren m&aacute;s protecciones sobre la inteligencia artificial para los ni&ntilde;os">
         <g>
           <circle cx="13" cy="15" r="11" fill="var(--cyan)"></circle>
           <circle cx="42" cy="15" r="11" fill="var(--cyan)"></circle>
@@ -338,11 +335,28 @@
     <article>
       <span class="ev-key"><span class="lang-en">Where they agree</span><span class="lang-es" lang="es">En qu&eacute; coinciden</span></span>
       <span class="n small"><span class="lang-en">Personal information</span><span class="lang-es" lang="es">Informaci&oacute;n personal</span></span>
-      <svg viewBox="0 0 300 62" role="img" aria-label="Parents and children both report concern about personal information being collected">
-        <rect x="0" y="10" width="128" height="14" rx="3" fill="var(--navy)"></rect>
-        <text x="136" y="21" font-size="11" font-weight="700" fill="var(--muted)">PARENTS</text>
-        <rect x="0" y="38" width="128" height="14" rx="3" fill="var(--cyan)"></rect>
-        <text x="136" y="49" font-size="11" font-weight="700" fill="var(--muted)">KIDS AND TEENS</text>
+      <svg viewBox="0 0 306 104" role="img" aria-labelledby="agreetitle agreedesc"
+           data-title-es="Los padres y los j&oacute;venes nombran la misma preocupaci&oacute;n"
+           data-desc-es="Dos grupos, padres y ni&ntilde;os y j&oacute;venes, con l&iacute;neas que convergen en una sola preocupaci&oacute;n compartida: que se recoja informaci&oacute;n personal sin que ellos lo sepan.">
+        <title id="agreetitle">Parents and young people name the same concern</title>
+        <desc id="agreedesc">Two groups, parents and kids and teens, with lines converging on one shared concern: personal information collected without their knowledge.</desc>
+        <g fill="none" stroke="var(--rule)" stroke-width="2">
+          <path d="M96 24 C140 24 140 52 178 52"></path>
+          <path d="M96 80 C140 80 140 52 178 52"></path>
+        </g>
+        <g>
+          <rect x="0" y="12" width="94" height="24" rx="12" fill="none" stroke="var(--navy)" stroke-width="1.5"></rect>
+          <text x="47" y="28" text-anchor="middle" font-size="11" font-weight="700" fill="var(--navy)" class="lang-en">PARENTS</text>
+          <text x="47" y="28" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--navy)" class="lang-es" lang="es">PADRES</text>
+          <rect x="0" y="68" width="94" height="24" rx="12" fill="none" stroke="var(--navy)" stroke-width="1.5"></rect>
+          <text x="47" y="84" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--navy)" class="lang-en">KIDS AND TEENS</text>
+          <text x="47" y="84" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--navy)" class="lang-es" lang="es">NI&#209;OS Y J&#211;VENES</text>
+        </g>
+        <g>
+          <rect x="178" y="36" width="126" height="32" rx="16" fill="var(--cyan)"></rect>
+          <text x="241" y="56" text-anchor="middle" font-size="11" font-weight="700" fill="#04293f" class="lang-en">SAME CONCERN</text>
+          <text x="241" y="56" text-anchor="middle" font-size="10" font-weight="700" fill="#04293f" class="lang-es" lang="es">MISMA PREOCUPACI&#211;N</text>
+        </g>
       </svg>
       <p class="lang-en">The worry both groups name: AI collecting personal information without their knowledge. Common Sense Media.<sup><a href="#fr3">3</a></sup></p>
       <p class="lang-es" lang="es">La preocupaci&oacute;n que los dos grupos mencionan: que estos programas recojan informaci&oacute;n personal sin que ellos lo sepan. Common Sense Media.<sup><a href="#fr3">3</a></sup></p>
@@ -351,16 +365,6 @@
 
   <h2 class="lang-en">The questions, answered</h2>
   <h2 class="lang-es" lang="es">Las preguntas, contestadas</h2>
-
-  <ul class="jump">
-    <li><a href="#q1"><span class="lang-en">What it is</span><span class="lang-es" lang="es">Qu&eacute; es</span></a></li>
-    <li><a href="#q2"><span class="lang-en">Information safety</span><span class="lang-es" lang="es">La informaci&oacute;n de mi hijo</span></a></li>
-    <li><a href="#q3"><span class="lang-en">Who decides</span><span class="lang-es" lang="es">Qui&eacute;n decide</span></a></li>
-    <li><a href="#q4"><span class="lang-en">When it is wrong</span><span class="lang-es" lang="es">Cuando se equivoca</span></a></li>
-    <li><a href="#q5"><span class="lang-en">Can I say no</span><span class="lang-es" lang="es">&iquest;Puedo decir que no?</span></a></li>
-    <li><a href="#q6"><span class="lang-en">At home</span><span class="lang-es" lang="es">En casa</span></a></li>
-    <li><a href="#q7"><span class="lang-en">What to ask the school</span><span class="lang-es" lang="es">Qu&eacute; preguntar en la escuela</span></a></li>
-  </ul>
   <div class="qa-grid">
 
     <article class="qa" id="q1">
@@ -482,6 +486,17 @@
     var stored = null;
     try { stored = localStorage.getItem('lang'); } catch (e) {}
 
+    var charts = [];
+    Array.prototype.forEach.call(document.querySelectorAll('.evidence svg'), function (svg) {
+      var t = svg.querySelector('title'), d = svg.querySelector('desc');
+      charts.push({
+        svg: svg, title: t, desc: d,
+        titleEn: t ? t.textContent : null, titleEs: svg.getAttribute('data-title-es'),
+        descEn: d ? d.textContent : null, descEs: svg.getAttribute('data-desc-es'),
+        labelEn: svg.getAttribute('aria-label'), labelEs: svg.getAttribute('data-label-es')
+      });
+    });
+
     var group = document.getElementById('lang-switch');
     var btns = group ? group.querySelectorAll('button[data-view]') : [];
 
@@ -489,6 +504,11 @@
       body.classList.remove('only-en', 'only-es');
       body.classList.add(mode === 'es' ? 'only-es' : 'only-en');
       document.documentElement.lang = (mode === 'es') ? 'es' : 'en';
+      charts.forEach(function (c) {
+        if (c.title) { c.title.textContent = (mode === 'es' && c.titleEs) ? c.titleEs : c.titleEn; }
+        if (c.desc) { c.desc.textContent = (mode === 'es' && c.descEs) ? c.descEs : c.descEn; }
+        if (c.labelEs) { c.svg.setAttribute('aria-label', mode === 'es' ? c.labelEs : c.labelEn); }
+      });
       try { localStorage.setItem('lang', mode); } catch (e) {}
       Array.prototype.forEach.call(btns, function (b) {
         b.setAttribute('aria-pressed', String(b.getAttribute('data-view') === mode));
