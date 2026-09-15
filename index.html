@@ -7,8 +7,10 @@
 <meta name="description" content="Portfolio of Carlos Eduardo Beleche: countywide program coordination, professional learning, and responsible AI adoption in K-12 public education.">
 <meta name="color-scheme" content="light dark">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23005488'/%3E%3Cpath d='M6 22V10h4l6 8V10h4v12h-4l-6-8v8z' fill='%2300aeef'/%3E%3C/svg%3E">
+<link rel="alternate" hreflang="es" href="es.html">
 <link rel="stylesheet" href="assets/style.css?v=5">
 <script>(function(){try{var t=localStorage.getItem("theme");if(t==="dark"||t==="light"){document.documentElement.setAttribute("data-theme",t);}}catch(e){}})();</script>
+<script>(function(){try{var l=localStorage.getItem("lang");if(!l)return;var h=document.documentElement.lang;if(l===h)return;var a=document.querySelector('link[rel="alternate"][hreflang="'+l+'"]');if(a&&a.getAttribute("href"))location.replace(a.getAttribute("href"));}catch(e){}})();</script>
 </head>
 <body>
 <div class="progress" id="progress" aria-hidden="true"></div>
@@ -25,7 +27,7 @@
         <li><a href="professional-learning.html">Professional learning</a></li>
         <li><a href="familias.html">For families</a></li>
         <li><a href="colophon.html">How this was made</a></li>
-        <li><a href="es.html" lang="es">Español</a></li>
+        <li><a href="es.html" lang="es" data-setlang="es">Español</a></li>
       </ul>
     </nav>
       <button type="button" class="theme-toggle" id="theme-toggle" role="switch" aria-checked="false">
@@ -216,7 +218,7 @@
 
 <footer class="site">
   <div class="inner">
-    <p><a href="colophon.html">How this site was made, including where I used AI</a> &middot; <a href="es.html" lang="es">Español</a></p>
+    <p><a href="colophon.html">How this site was made, including where I used AI</a> &middot; <a href="es.html" lang="es" data-setlang="es">Español</a></p>
     <p class="disclaim">This is a personal portfolio. It is not affiliated with, endorsed by, or published on behalf of the San Diego County Office of Education or any other agency, and it contains no confidential or non public information.</p>
   </div>
 </footer>

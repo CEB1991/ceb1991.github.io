@@ -39,6 +39,14 @@
     sync();
   }
 
+
+  /* ---------- remember the chosen language ---------- */
+  document.addEventListener('click', function (e) {
+    var link = e.target.closest ? e.target.closest('[data-setlang]') : null;
+    if (!link) { return; }
+    try { localStorage.setItem('lang', link.getAttribute('data-setlang')); } catch (err) {}
+  });
+
   /* ---------- reading progress ---------- */
   var bar = document.getElementById('progress');
   if (bar && !reduce) {

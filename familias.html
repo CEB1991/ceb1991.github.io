@@ -15,6 +15,9 @@
      ========================================================================== */
 
   body.only-en .lang-es, body.only-es .lang-en { display: none; }
+  .nav-es { display: none; }
+  body.only-es .nav-es { display: inline-block; }
+  body.only-es .nav-en { display: none; }
 
   /* When both languages are on, inline pairs sit side by side and would otherwise
      run together as one word. Block-level pairs (p, h2, li) already stack. */
@@ -248,20 +251,19 @@
 </head>
 <body>
 <div class="progress" id="progress" aria-hidden="true"></div>
-<a class="skip" href="#main">Skip to main content</a>
+<a class="skip" href="#main">Skip to main content / Ir al contenido principal</a>
 
 <header class="masthead">
   <div class="masthead-inner">
-    <a class="wordmark" href="index.html">Carlos Eduardo Beleche<span>AI program leader, educational technology and data systems</span></a>
+    <a class="wordmark" href="index.html">Carlos Eduardo Beleche<span>AI program leader / L&iacute;der de programas de IA</span></a>
     <nav aria-label="Main">
       <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="first-90-days.html">First 90 days</a></li>
-        <li><a href="responsible-ai.html">Responsible AI</a></li>
-        <li><a href="professional-learning.html">Professional learning</a></li>
-        <li><a href="familias.html" aria-current="page">For families</a></li>
-        <li><a href="colophon.html">How this was made</a></li>
-        <li><a href="es.html" lang="es">Espa&ntilde;ol</a></li>
+        <li><a href="index.html" class="nav-en">Home</a><a href="es.html" class="nav-es" lang="es">Inicio</a></li>
+        <li><a href="first-90-days.html" class="nav-en">First 90 days</a><a href="primeros-90-dias.html" class="nav-es" lang="es">Primeros 90 d&iacute;as</a></li>
+        <li><a href="responsible-ai.html" class="nav-en">Responsible AI</a><a href="ia-responsable.html" class="nav-es" lang="es">IA responsable</a></li>
+        <li><a href="professional-learning.html" class="nav-en">Professional learning</a><a href="aprendizaje-profesional.html" class="nav-es" lang="es">Aprendizaje profesional</a></li>
+        <li><a href="familias.html" aria-current="page" class="nav-en">For families</a><a href="familias.html" aria-current="page" class="nav-es" lang="es">Para familias</a></li>
+        <li><a href="colophon.html" class="nav-en">How this was made</a><a href="como-se-hizo.html" class="nav-es" lang="es">C&oacute;mo se hizo</a></li>
       </ul>
     </nav>
       <button type="button" class="theme-toggle" id="theme-toggle" role="switch" aria-checked="false">
@@ -270,7 +272,7 @@
           <svg class="ico ico-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 13.2A8.2 8.2 0 1 1 10.8 3.5a6.4 6.4 0 0 0 9.7 9.7z"/></svg>
           <span class="knob"></span>
         </span>
-        <span class="sr-only">Dark theme</span>
+        <span class="sr-only">Dark theme / Tema oscuro</span>
       </button>
   </div>
 </header>
@@ -505,7 +507,7 @@
 
 <footer class="site">
   <div class="inner">
-    <p><a href="colophon.html">How this site was made, including where I used AI</a> &middot; <a href="index.html">Home</a></p>
+    <p><a href="colophon.html" class="nav-en">How this site was made, including where I used AI</a><a href="como-se-hizo.html" class="nav-es" lang="es">C&oacute;mo se hizo este sitio, incluyendo d&oacute;nde us&eacute; IA</a> &middot; <a href="index.html" class="nav-en">Home</a><a href="es.html" class="nav-es" lang="es">Inicio</a></p>
     <p class="disclaim">This is a personal portfolio. It is not affiliated with, endorsed by, or published on behalf of the San Diego County Office of Education or any other agency, and it contains no confidential or non public information.</p>
   </div>
 </footer>
@@ -513,6 +515,8 @@
 <script>
   (function () {
     var body = document.body;
+    var stored = null;
+    try { stored = localStorage.getItem('lang'); } catch (e) {}
 
     var buttons = { both: document.getElementById('btn-both'), en: document.getElementById('btn-en'), es: document.getElementById('btn-es') };
     function set(mode) {
@@ -520,10 +524,14 @@
       if (mode === 'en') { body.classList.add('only-en'); }
       if (mode === 'es') { body.classList.add('only-es'); }
       document.documentElement.lang = (mode === 'es') ? 'es' : 'en';
+      if (mode === 'es' || mode === 'en') {
+        try { localStorage.setItem('lang', mode); } catch (e) {}
+      }
       Object.keys(buttons).forEach(function (k) {
         buttons[k].setAttribute('aria-pressed', String(k === mode));
       });
     }
+    if (stored === 'es') { set('es'); }
     buttons.both.addEventListener('click', function () { set('both'); });
     buttons.en.addEventListener('click', function () { set('en'); });
     buttons.es.addEventListener('click', function () { set('es'); });

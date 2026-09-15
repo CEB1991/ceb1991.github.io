@@ -9,6 +9,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23005488'/%3E%3Cpath d='M6 22V10h4l6 8V10h4v12h-4l-6-8v8z' fill='%2300aeef'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="assets/style.css?v=5">
 <script>(function(){try{var t=localStorage.getItem("theme");if(t==="dark"||t==="light"){document.documentElement.setAttribute("data-theme",t);}}catch(e){}})();</script>
+<script>(function(){try{var l=localStorage.getItem("lang");if(!l)return;var h=document.documentElement.lang;if(l===h)return;var a=document.querySelector('link[rel="alternate"][hreflang="'+l+'"]');if(a&&a.getAttribute("href"))location.replace(a.getAttribute("href"));}catch(e){}})();</script>
 </head>
 <body>
 <div class="progress" id="progress" aria-hidden="true"></div>
@@ -20,11 +21,12 @@
     <nav aria-label="Principal">
       <ul>
         <li><a href="es.html" aria-current="page">Inicio</a></li>
+        <li><a href="primeros-90-dias.html">Primeros 90 d&iacute;as</a></li>
+        <li><a href="ia-responsable.html">IA responsable</a></li>
+        <li><a href="aprendizaje-profesional.html">Aprendizaje profesional</a></li>
         <li><a href="familias.html">Para familias</a></li>
-        <li><a href="first-90-days.html" lang="en">First 90 days</a></li>
-        <li><a href="responsible-ai.html" lang="en">Responsible AI</a></li>
-        <li><a href="professional-learning.html" lang="en">Professional learning</a></li>
-        <li><a href="index.html" lang="en">English</a></li>
+        <li><a href="como-se-hizo.html">C&oacute;mo se hizo</a></li>
+        <li><a href="index.html" lang="en" data-setlang="en">English</a></li>
       </ul>
     </nav>
       <button type="button" class="theme-toggle" id="theme-toggle" role="switch" aria-checked="false">
@@ -95,19 +97,19 @@
       <a href="familias.html">Leer la guía</a>
     </article>
     <article class="piece">
-      <h3 lang="en">A first 90 days</h3>
-      <p>Un plan de los primeros 90 días: escuchar, redactar en público y poner a prueba algo pequeño. En inglés.</p>
-      <a href="first-90-days.html" lang="en">Read the plan</a>
+      <h3>Los primeros 90 d&iacute;as</h3>
+      <p>Qu&eacute; escuchar&iacute;a, qu&eacute; escribir&iacute;a y qu&eacute; me negar&iacute;a a apresurar.</p>
+      <a href="primeros-90-dias.html">Leer el plan</a>
     </article>
     <article class="piece">
-      <h3 lang="en">Responsible AI</h3>
-      <p>Cinco compromisos y una respuesta honesta sobre el costo ambiental, con cifras y con sus dudas. En inglés.</p>
-      <a href="responsible-ai.html" lang="en">Read the framework</a>
+      <h3>Adopci&oacute;n responsable, con sus costos</h3>
+      <p>Cinco compromisos, una respuesta honesta sobre el costo ambiental y una calculadora que estima la huella de una implementaci&oacute;n.</p>
+      <a href="ia-responsable.html">Leer la postura</a>
     </article>
     <article class="piece">
-      <h3 lang="en">Professional learning</h3>
-      <p>Dos talleres completos de 60 minutos, uno para principiantes y otro de nivel intermedio, y por qué separo los niveles. En inglés.</p>
-      <a href="professional-learning.html" lang="en">See the session plans</a>
+      <h3>Formaci&oacute;n que la gente s&iacute; va a usar</h3>
+      <p>Dos talleres completos de 60 minutos, uno para principiantes y otro intermedio, m&aacute;s una autoevaluaci&oacute;n que un equipo de distrito puede contestar en una reuni&oacute;n.</p>
+      <a href="aprendizaje-profesional.html">Ver los planes de sesi&oacute;n</a>
     </article>
   </div>
 
@@ -121,7 +123,7 @@
 
 <footer class="site">
   <div class="inner">
-    <p><a href="colophon.html" lang="en">How this site was made, including where I used AI</a> &middot; <a href="index.html" lang="en">English</a></p>
+    <p><a href="como-se-hizo.html">C&oacute;mo se hizo este sitio, incluyendo d&oacute;nde us&eacute; IA</a> &middot; <a href="index.html" lang="en" data-setlang="en">English</a></p>
     <p class="disclaim">Este es un portafolio personal. No está afiliado ni respaldado por la Oficina de Educación del Condado de San Diego ni por ninguna otra institución, y no contiene información confidencial ni información que no sea pública.</p>
   </div>
 </footer>
