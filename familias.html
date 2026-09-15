@@ -332,7 +332,7 @@
   <p class="col lang-es" lang="es">Tres resultados de encuestas nacionales a padres de familia y a j&oacute;venes, publicadas a principios de 2026. Por eso esta p&aacute;gina empieza con la privacidad, con los errores y con qui&eacute;n responde.</p>
 
   <div class="evidence">
-    <article class="reveal">
+    <article>
       <span class="ev-key"><span class="lang-en">Use, and what parents think</span><span class="lang-es" lang="es">Uso, y lo que creen los padres</span></span>
       <svg viewBox="0 0 300 96" role="img" aria-labelledby="gaptitle gapdesc">
         <title id="gaptitle">Teen AI use against parent estimates</title>
@@ -348,7 +348,7 @@
       <p class="lang-es" lang="es">Adolescentes que dicen usar estos programas, frente a padres que creen que su propio hijo los usa. Pew Research Center.<sup><a href="#fr1">1</a></sup></p>
     </article>
 
-    <article class="reveal">
+    <article>
       <span class="ev-key"><span class="lang-en">What parents want</span><span class="lang-es" lang="es">Lo que quieren los padres</span></span>
       <span class="n">8 of 10</span>
       <svg viewBox="0 0 300 30" role="img" aria-label="Eight of ten parents want stronger guardrails on AI for children">
@@ -369,7 +369,7 @@
       <p class="lang-es" lang="es">De cada diez padres de escuelas p&uacute;blicas, ocho quieren m&aacute;s protecciones para los ni&ntilde;os, en una encuesta de febrero de 2026 a 1,511 padres.<sup><a href="#fr2">2</a></sup></p>
     </article>
 
-    <article class="reveal">
+    <article>
       <span class="ev-key"><span class="lang-en">Where they agree</span><span class="lang-es" lang="es">En qu&eacute; coinciden</span></span>
       <span class="n small"><span class="lang-en">Personal information</span><span class="lang-es" lang="es">Informaci&oacute;n personal</span></span>
       <svg viewBox="0 0 300 62" role="img" aria-label="Parents and children both report concern about personal information being collected">
@@ -397,7 +397,7 @@
   </ul>
   <div class="qa-grid">
 
-    <article class="qa reveal" id="q1">
+    <article class="qa" id="q1">
       <span class="ghost" aria-hidden="true">1</span>
       <span class="tag en">EN</span>
       <h3 class="q lang-en">What is artificial intelligence, in plain terms?</h3>
@@ -409,7 +409,7 @@
       </div>
     </article>
 
-    <article class="qa reveal" id="q2">
+    <article class="qa" id="q2">
       <span class="ghost" aria-hidden="true">2</span>
       <span class="tag en">EN</span>
       <h3 class="q lang-en">Is my child&rsquo;s information safe?</h3>
@@ -421,7 +421,7 @@
       </div>
     </article>
 
-    <article class="qa reveal" id="q3">
+    <article class="qa" id="q3">
       <span class="ghost" aria-hidden="true">3</span>
       <span class="tag en">EN</span>
       <h3 class="q lang-en">Will a computer decide my child&rsquo;s grade, placement, or discipline?</h3>
@@ -433,7 +433,7 @@
       </div>
     </article>
 
-    <article class="qa reveal" id="q4">
+    <article class="qa" id="q4">
       <span class="ghost" aria-hidden="true">4</span>
       <span class="tag en">EN</span>
       <h3 class="q lang-en">What happens when it is wrong?</h3>
@@ -445,7 +445,7 @@
       </div>
     </article>
 
-    <article class="qa reveal" id="q5">
+    <article class="qa" id="q5">
       <span class="ghost" aria-hidden="true">5</span>
       <span class="tag en">EN</span>
       <h3 class="q lang-en">Can I say no?</h3>
@@ -457,7 +457,7 @@
       </div>
     </article>
 
-    <article class="qa reveal" id="q6">
+    <article class="qa" id="q6">
       <span class="ghost" aria-hidden="true">6</span>
       <span class="tag en">EN</span>
       <h3 class="q lang-en">What can we do at home?</h3>
@@ -469,7 +469,7 @@
       </div>
     </article>
 
-    <article class="ask-panel reveal" id="q7">
+    <article class="ask-panel" id="q7">
       <h3><span class="lang-en">What should I ask the school?</span><span class="lang-es" lang="es">&iquest;Qu&eacute; debo preguntar en la escuela?</span></h3>
       <p class="lang-en">Four questions cover most of it. A school that cannot answer them yet is not necessarily doing anything wrong, but the questions are fair and they deserve an answer in writing.</p>
       <p class="lang-es" lang="es">Cuatro preguntas cubren casi todo. Una escuela que todav&iacute;a no puede contestarlas no necesariamente est&aacute; haciendo algo mal, pero las preguntas son justas y merecen una respuesta por escrito.</p>
@@ -513,7 +513,6 @@
 <script>
   (function () {
     var body = document.body;
-    body.classList.add('js');
 
     var buttons = { both: document.getElementById('btn-both'), en: document.getElementById('btn-en'), es: document.getElementById('btn-es') };
     function set(mode) {
